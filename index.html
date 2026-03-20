@@ -1,339 +1,804 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Havenbrook — Structured Note Screener</title>
+<title>Havenbrook Fund Intelligence — Structured Note Screener v2</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#f5f5f0;padding:20px;color:#1a1a1a;min-height:100vh}
-.wrap{background:#fff;border:1px solid #e0e0d8;border-radius:12px;overflow:hidden;max-width:1500px;margin:0 auto;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.hdr{padding:1rem 1.5rem;border-bottom:1px solid #e0e0d8;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.hdr-logo{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:2px}
-.hdr-title{font-size:16px;font-weight:600;color:#1a1a1a}
-.hdr-sub{font-size:11px;color:#999;margin-top:2px}
-.badge{font-size:11px;padding:3px 10px;border-radius:6px;background:#f1efe8;border:1px solid #d3d1c7;color:#5f5e5a;font-weight:500}
-.filters{padding:.75rem 1.5rem;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #e0e0d8;align-items:flex-end;background:#fafaf7}
-.fg{display:flex;flex-direction:column;gap:3px}
-.fg label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
-.fg select,.fg input{font-size:12px;padding:5px 8px;border:1px solid #d3d1c7;border-radius:6px;background:#fff;color:#1a1a1a;outline:none}
-.fg select:focus,.fg input:focus{border-color:#888}
-.hint{font-size:10px;color:#bbb;margin-top:2px}
-.reset-btn{font-size:11px;padding:5px 12px;border:1px solid #d3d1c7;border-radius:6px;background:transparent;color:#888;cursor:pointer;align-self:flex-end;font-weight:500}
-.reset-btn:hover{background:#f1efe8;color:#444}
-.count-bar{padding:6px 1.5rem;font-size:11px;border-bottom:1px solid #e0e0d8;background:#fafaf7;display:flex;gap:14px;flex-wrap:wrap}
-#cl{color:#666;font-weight:500}
-#c2{color:#bbb}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:11.5px}
-th{font-size:10px;font-weight:600;color:#999;text-align:left;padding:7px 10px;border-bottom:1px solid #e8e8e0;white-space:nowrap;cursor:pointer;user-select:none;background:#fafaf7;text-transform:uppercase;letter-spacing:.04em}
-th:hover{color:#444}
-th .sa{margin-left:3px;opacity:.35;font-size:9px}
-th.sorted .sa{opacity:1;color:#333}
-td{padding:7px 10px;border-bottom:1px solid #f2f2ea;color:#1a1a1a;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#fafaf7}
-.pill{display:inline-block;font-size:9.5px;padding:2px 7px;border-radius:20px;white-space:nowrap;font-weight:600}
-.f{background:#dbeafe;color:#1e40af}.a{background:#dcfce7;color:#166534}
-.st-new{background:#fef3c7;color:#92400e}.st-closing{background:#fee2e2;color:#991b1b}
-.st-open{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb}
-.st-soon{background:#ede9fe;color:#5b21b6}.st-live{background:#d1fae5;color:#065f46}
-.i-cibc{background:#dbeafe;color:#1d4ed8}.i-nbc{background:#fef3c7;color:#b45309}
-.i-bns{background:#fee2e2;color:#b91c1c}.i-rbc{background:#d1fae5;color:#047857}
-.i-bmo{background:#ede9fe;color:#6d28d9}.i-td{background:#ecfdf5;color:#065f46}
-.b-tight{background:#fee2e2;color:#991b1b}.b-mid{background:#fef3c7;color:#92400e}.b-wide{background:#dcfce7;color:#166534}.b-pp{background:#d1fae5;color:#065f46}
-.pill-s{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb}
-.uc-cdn-eq{background:#dbeafe;color:#1e40af}.uc-cdn-bank{background:#dcfce7;color:#166534}
-.uc-cdn-energy{background:#fef3c7;color:#92400e}.uc-cdn-other{background:#ede9fe;color:#5b21b6}
-.uc-us-bank{background:#d1fae5;color:#065f46}.uc-us-energy{background:#fee2e2;color:#991b1b}
-.uc-us-lc{background:#ecfdf5;color:#047857}.uc-global{background:#fdf4ff;color:#7e22ce}.uc-single{background:#fce7f3;color:#9d174d}
-.nm{max-width:200px;line-height:1.4;font-size:11px;color:#374151}
-.empty{padding:3rem;text-align:center;color:#bbb;font-size:13px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#f5f5f3;font-size:14px}
+.hdr{padding:.75rem 1.25rem;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;background:#fff}
+.logo{font-size:14px;font-weight:500}.logo span{color:#1D9E75}
+.tabs{display:flex;gap:4px}
+.tab{padding:5px 12px;border-radius:6px;border:1px solid #e5e5e5;background:transparent;font-size:12px;cursor:pointer;color:#666}
+.tab.active{background:#f0f0ee;color:#1a1a1a;font-weight:500}
+.filters{padding:.6rem 1.25rem;border-bottom:1px solid #e5e5e5;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;background:#fff}
+.fgrp{display:flex;flex-direction:column;gap:3px}
+.flbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em}
+select,input[type=text]{font-size:12px;padding:4px 7px;border:1px solid #e5e5e5;border-radius:6px;background:#fff;color:#1a1a1a}
+.ms-wrap{position:relative;display:inline-block}
+.ms-btn{font-size:12px;padding:4px 24px 4px 8px;border:1px solid #e5e5e5;border-radius:6px;background:#fff;color:#1a1a1a;min-width:160px;cursor:pointer;user-select:none;position:relative;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn::after{content:"▾";position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:10px;color:#888}
+.ms-dd{position:absolute;top:calc(100% + 2px);left:0;min-width:220px;background:#fff;border:1px solid #ddd;border-radius:6px;z-index:200;display:none;max-height:260px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.ms-dd.open{display:block}
+.ms-item{display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:12px;cursor:pointer}
+.ms-item:hover{background:#f5f5f3}
+.ms-item label{cursor:pointer;flex:1}
+.sub-bar{padding:.4rem 1.25rem;background:#f5f5f3;border-bottom:1px solid #e5e5e5;flex-wrap:wrap;gap:5px;align-items:center;display:none}
+.sub-bar.open{display:flex}
+.sub-lbl{font-size:10px;color:#888;text-transform:uppercase;margin-right:4px}
+.pill{padding:2px 10px;border-radius:20px;font-size:11px;border:1px solid #e5e5e5;cursor:pointer;background:#fff;color:#666;user-select:none}
+.pill.on{background:#1D9E75;color:#fff;border-color:#1D9E75}
+.stats{padding:.4rem 1.25rem;border-bottom:1px solid #e5e5e5;display:flex;gap:16px;flex-wrap:wrap;background:#fff}
+.stat{font-size:11px;color:#888}.stat b{color:#1a1a1a;font-weight:500}
+.sel-bar{padding:.4rem 1.25rem;background:#f0f0ee;border-bottom:1px solid #e5e5e5;display:none;align-items:center;gap:8px}
+.sel-bar.show{display:flex}
+.btn{padding:4px 11px;border-radius:6px;border:1px solid #ccc;background:transparent;font-size:12px;cursor:pointer;color:#1a1a1a}
+.btn-g{background:#1D9E75;color:#fff;border-color:#1D9E75}
+.tbl-wrap{overflow-x:auto;max-height:560px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{background:#f5f5f3;position:sticky;top:0;z-index:2}
+th{padding:6px 9px;text-align:left;font-weight:500;font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #e5e5e5;white-space:nowrap;cursor:pointer}
+th:hover{color:#1a1a1a}
+td{padding:5px 9px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+tr:hover td{background:#f5f5f3}
+.cp{font-weight:500;color:#1D9E75}
+.bc20{color:#1D9E75}.bc25{color:#0F6E56}.bc30{color:#185FA5}.bc35{color:#533AB7}.bc40p{color:#888}
+.bdg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:500}
+.bf{background:#E1F5EE;color:#085041}.ba{background:#E6F1FB;color:#0C447C}
+.bcs{background:#FAEEDA;color:#633806}.bnew{background:#EAF3DE;color:#27500A}
+.bcl{background:#FCEBEB;color:#791F1F}.bppn{background:#EEEDFE;color:#3C3489}
+.bfl{background:#FAECE7;color:#712B13}
+.ibd{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;color:#666;background:#f0f0ee;border:1px solid #e5e5e5}
+.empty{padding:2rem;text-align:center;color:#888;font-size:13px}
+.panel{padding:1.25rem}
+.best-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:.75rem}
+.best-card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:.85rem}
+.best-card h4{font-size:12px;font-weight:500;margin-bottom:2px}
+.best-sub{font-size:10px;color:#888;margin-bottom:7px}
+.best-row{display:flex;justify-content:space-between;align-items:flex-start;padding:5px 0;border-bottom:1px solid #e5e5e5;gap:8px}
+.best-row:last-child{border-bottom:none}
+.best-cp{font-weight:500;color:#1D9E75;font-size:13px}
+.pitch-out{margin-top:.75rem;padding:.85rem;background:#f5f5f3;border-radius:6px;border:1px solid #e5e5e5;font-size:12px;line-height:1.75;white-space:pre-wrap;max-height:500px;overflow-y:auto}
+.copy-btn{padding:3px 9px;font-size:11px;border-radius:6px;border:1px solid #e5e5e5;background:transparent;cursor:pointer;color:#666}
 </style>
 </head>
 <body>
-<div class="wrap">
+ 
 <div class="hdr">
-  <div>
-    <div class="hdr-logo">Havenbrook Wealth Management</div>
-    <div class="hdr-title">Structured Note Screener</div>
-    <div class="hdr-sub">6 Issuers: CIBC &middot; NBC &middot; BNS &middot; RBC &middot; BMO &middot; TD &nbsp;&middot;&nbsp; Week of Mar 16&ndash;18, 2026</div>
+  <div class="logo">Havenbrook <span>Fund Intelligence</span> · Structured Note Screener v2</div>
+  <div class="tabs">
+    <button class="tab active" onclick="S.tab('screen')">Screener</button>
+    <button class="tab" onclick="S.tab('best')">Best Note Finder</button>
+    <button class="tab" onclick="S.tab('pitch')">Pitch Generator</button>
   </div>
-  <span class="badge" id="tb">loading...</span>
 </div>
-<div class="filters">
-  <div class="fg"><label>Issuer</label><select id="fi" style="min-width:90px"><option value="">All</option><option>CIBC</option><option>NBC</option><option>BNS</option><option>RBC</option><option>BMO</option><option>TD</option></select></div>
-  <div class="fg"><label>Class</label><select id="fc" style="min-width:90px"><option value="">All</option><option value="F">F-Class</option><option value="A">A-Class</option></select></div>
-  <div class="fg"><label>Structure</label><select id="ft" style="min-width:145px"><option value="">All structures</option><option value="Income">Income Notes</option><option value="Autocallable">Autocallable / PAR</option><option value="Fixed Yield">Fixed Yield</option><option value="Accelerated">Accelerated Return</option><option value="Booster">Booster / Twin Win</option><option value="PPN">PPN / Deposit</option><option value="MLGIC">MLGIC</option></select></div>
-  <div class="fg"><label>Underlying theme</label><select id="fuc" style="min-width:200px"><option value="">All underlyings</option><option value="cdn-eq">Canadian Equity (Broad)</option><option value="cdn-bank">Canadian Banks</option><option value="cdn-energy">Canadian Energy</option><option value="cdn-other">Canadian Other (Telecom / Util / Ins / Pipe)</option><option value="us-bank">US Banks</option><option value="us-energy">US Energy / Miners</option><option value="us-lc">US Large Cap / Broad</option><option value="global">Global / European / EM</option><option value="single">Single Name</option></select></div>
-  <div class="fg"><label>Min protection</label><select id="fb" style="min-width:110px"><option value="">Any</option><option value="-10">&#8805; 10%</option><option value="-15">&#8805; 15%</option><option value="-20">&#8805; 20%</option><option value="-25">&#8805; 25%</option><option value="-30">&#8805; 30%</option><option value="-35">&#8805; 35%</option><option value="-40">&#8805; 40%</option></select><span class="hint">More negative = more protection</span></div>
-  <div class="fg"><label>Min coupon %</label><input type="number" id="fcp" placeholder="e.g. 8" style="width:80px"></div>
-  <div class="fg"><label>Currency</label><select id="fcu" style="min-width:80px"><option value="">All</option><option>CAD</option><option>USD</option></select></div>
-  <div class="fg"><label>Status</label><select id="fs" style="min-width:110px"><option value="">All</option><option>NEW</option><option>OPEN</option><option>CLOSING</option><option>SOON</option><option>LIVE</option></select></div>
-  <div class="fg"><label>Term</label><select id="ftr" style="min-width:80px"><option value="">All</option><option value="2">&#8804;2 yr</option><option value="5">5 yr</option><option value="7">7 yr</option></select></div>
-  <button class="reset-btn" onclick="reset()">Reset filters</button>
+ 
+<div id="tab-screen">
+  <div class="filters">
+    <div class="fgrp">
+      <div class="flbl">Theme</div>
+      <div class="ms-wrap" id="msw">
+        <div class="ms-btn" id="ms-lbl" onclick="S.toggleDD()">All themes</div>
+        <div class="ms-dd" id="ms-dd">
+          <div class="ms-item"><input type="checkbox" id="t-all" checked onchange="S.themeAll(this)"><label for="t-all">All themes</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Equity (Broad)" onchange="S.themeChange()"><label>Canadian Equity (Broad)</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Banks" onchange="S.themeChange()"><label>Canadian Banks</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Energy" onchange="S.themeChange()"><label>Canadian Energy</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="US Banks" onchange="S.themeChange()"><label>US Banks</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="US Large Cap / Broad" onchange="S.themeChange()"><label>US Large Cap / Broad</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="US Equal Weight / Factor" onchange="S.themeChange()"><label>US Equal Weight / Factor</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Global / European / EM" onchange="S.themeChange()"><label>Global / European / EM</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Sector" onchange="S.themeChange()"><label>Sector</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Multi-Asset / Basket PPN" onchange="S.themeChange()"><label>Multi-Asset / Basket PPN</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Issuer</div>
+      <select id="f-iss" onchange="S.run()">
+        <option value="">All</option>
+        <option value="CIBC">CIBC</option><option value="NBC">NBC</option>
+        <option value="BNS">BNS</option><option value="RBC">RBC</option>
+        <option value="BMO">BMO</option><option value="TD">TD</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Structure</div>
+      <select id="f-st" onchange="S.run()">
+        <option value="">All</option>
+        <option value="Contingent Coupon">Contingent Coupon</option>
+        <option value="Autocallable">Autocallable (Front-Loaded)</option>
+        <option value="PPN / GIC">PPN / GIC</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Min Barrier</div>
+      <select id="f-ba" onchange="S.run()">
+        <option value="0">Any</option>
+        <option value="20">≥ 20%</option>
+        <option value="25">≥ 25%</option>
+        <option value="30">≥ 30%</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Class</div>
+      <select id="f-cl" onchange="S.run()">
+        <option value="">Both</option>
+        <option value="F">F-Class</option>
+        <option value="A">A-Class</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">CCY</div>
+      <select id="f-cy" onchange="S.run()">
+        <option value="">All</option>
+        <option value="CAD">CAD</option>
+        <option value="USD">USD</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Status</div>
+      <select id="f-sx" onchange="S.run()">
+        <option value="">All</option>
+        <option value="Active">Active</option>
+        <option value="Coming Soon">Coming Soon</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">Search</div>
+      <input type="text" id="f-q" placeholder="keyword…" oninput="S.run()" style="min-width:110px">
+    </div>
+  </div>
+ 
+  <div class="sub-bar open" id="sub-bar">
+    <span class="sub-lbl">Sector:</span>
+    <span class="pill on" onclick="S.sec('',this)">All</span>
+    <span class="pill" onclick="S.sec('Telecom',this)">Telecom</span>
+    <span class="pill" onclick="S.sec('Utilities',this)">Utilities</span>
+    <span class="pill" onclick="S.sec('Healthcare',this)">Healthcare</span>
+    <span class="pill" onclick="S.sec('Semiconductors',this)">Semiconductors</span>
+    <span class="pill" onclick="S.sec('Insurance',this)">Insurance</span>
+    <span class="pill" onclick="S.sec('Pipelines',this)">Pipelines</span>
+    <span class="pill" onclick="S.sec('Gold Miners',this)">Gold Miners</span>
+    <span class="pill" onclick="S.sec('REITs',this)">REITs</span>
+    <span class="pill" onclick="S.sec('Tech/Software',this)">Tech/Software</span>
+    <span class="pill" onclick="S.sec('Power Grid',this)">Power Grid</span>
+    <span class="pill" onclick="S.sec('Cyber Security',this)">Cyber Security</span>
+    <span class="pill" onclick="S.sec('US Energy',this)">US Energy</span>
+    <span class="pill" onclick="S.sec('Critical Minerals',this)">Critical Minerals</span>
+  </div>
+ 
+  <div class="stats">
+    <div class="stat">Showing <b id="st-count">—</b> notes</div>
+    <div class="stat">Avg coupon: <b id="st-avg">—</b></div>
+    <div class="stat">Max coupon: <b id="st-max">—</b></div>
+    <div class="stat" id="st-sel" style="display:none">Selected: <b id="st-selc">0</b></div>
+  </div>
+ 
+  <div class="sel-bar" id="sel-bar">
+    <span id="sel-lbl" style="font-size:12px;color:#666">0 notes selected</span>
+    <button class="btn btn-g" onclick="S.tab('pitch');S.genPitch()">Generate Pitch ↗</button>
+    <button class="btn" style="margin-left:4px" onclick="S.clearSel()">Clear</button>
+  </div>
+ 
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:26px"><input type="checkbox" id="chk-all" onchange="S.togAll(this)"></th>
+        <th onclick="S.sort('issuer')">Issuer</th>
+        <th onclick="S.sort('name')">Note Name</th>
+        <th onclick="S.sort('underlying')">Underlying</th>
+        <th onclick="S.sort('theme')">Theme</th>
+        <th onclick="S.sort('struct')">Structure</th>
+        <th onclick="S.sort('coupon')">Coupon</th>
+        <th onclick="S.sort('barrier')">Barrier</th>
+        <th>Term</th>
+        <th>Cl</th>
+        <th>CCY</th>
+        <th onclick="S.sort('status')">Status</th>
+        <th>FundSERV</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="empty" class="empty" style="display:none">No notes match the current filters.</div>
+  </div>
 </div>
-<div class="count-bar"><span id="cl">Loading...</span>&nbsp;<span id="c2"></span></div>
-<div class="table-wrap">
-<table><thead><tr>
-  <th onclick="sb('status')" id="th-status">Status<span class="sa">&#8597;</span></th>
-  <th onclick="sb('issuer')" id="th-issuer">Issuer<span class="sa">&#8597;</span></th>
-  <th onclick="sb('name')" id="th-name">Note<span class="sa">&#8597;</span></th>
-  <th onclick="sb('structure')" id="th-structure">Structure<span class="sa">&#8597;</span></th>
-  <th onclick="sb('cls')" id="th-cls">Class<span class="sa">&#8597;</span></th>
-  <th onclick="sb('coupon')" id="th-coupon">Coupon / Return<span class="sa">&#8597;</span></th>
-  <th onclick="sb('barrier')" id="th-barrier">Protection<span class="sa">&#8597;</span></th>
-  <th onclick="sb('term')" id="th-term">Term<span class="sa">&#8597;</span></th>
-  <th onclick="sb('ucat')" id="th-ucat">Underlying Theme<span class="sa">&#8597;</span></th>
-  <th onclick="sb('currency')" id="th-currency">Ccy<span class="sa">&#8597;</span></th>
-  <th onclick="sb('commission')" id="th-commission">Comm<span class="sa">&#8597;</span></th>
-  <th onclick="sb('closing')" id="th-closing">Closing<span class="sa">&#8597;</span></th>
-</tr></thead><tbody id="tbody"></tbody></table>
-<div class="empty" id="empty" style="display:none">No notes match the current filters.</div>
-</div></div>
+ 
+<div id="tab-best" style="display:none">
+  <div class="panel">
+    <p style="font-size:12px;color:#888;margin-bottom:.75rem">Best coupon at 20%, 25%, and 30% barrier tiers per theme. Excludes PPNs with no coupon.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.75rem;align-items:flex-end">
+      <div class="fgrp"><div class="flbl">Theme</div>
+        <select id="b-th" onchange="S.renderBest()">
+          <option value="">All Themes</option>
+          <option>Canadian Equity (Broad)</option><option>Canadian Banks</option>
+          <option>Canadian Energy</option><option>US Banks</option>
+          <option>US Large Cap / Broad</option><option>US Equal Weight / Factor</option>
+          <option>Global / European / EM</option><option>Sector</option>
+        </select>
+      </div>
+      <div class="fgrp"><div class="flbl">Class</div>
+        <select id="b-cl" onchange="S.renderBest()"><option value="">Both</option><option value="F">F-Class</option><option value="A">A-Class</option></select>
+      </div>
+      <div class="fgrp"><div class="flbl">Structure</div>
+        <select id="b-st" onchange="S.renderBest()">
+          <option value="">All</option>
+          <option value="Contingent Coupon">Contingent Coupon</option>
+          <option value="Autocallable">Autocallable (Front-Loaded)</option>
+        </select>
+      </div>
+      <div class="fgrp"><div class="flbl">Status</div>
+        <select id="b-sx" onchange="S.renderBest()"><option value="">All</option><option value="Active">Active only</option></select>
+      </div>
+    </div>
+    <div id="best-out" class="best-grid"></div>
+  </div>
+</div>
+ 
+<div id="tab-pitch" style="display:none">
+  <div class="panel">
+    <p style="font-size:12px;color:#888;margin-bottom:.6rem">Select notes in the Screener tab, then generate a plain-English email-ready narrative.</p>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:.6rem">
+      <button class="btn btn-g" onclick="S.genPitch()">Generate pitch ↗</button>
+      <button class="btn" onclick="document.getElementById('p-out').textContent='';document.getElementById('p-out').style.display='none'">Clear</button>
+      <button class="copy-btn" onclick="S.copyPitch()">Copy</button>
+    </div>
+    <div id="p-sel" style="font-size:11px;color:#888;margin-bottom:.5rem"></div>
+    <div id="p-out" class="pitch-out" style="display:none"></div>
+  </div>
+</div>
+ 
 <script>
-const D=[
-{issuer:"CIBC",status:"NEW",name:"Cdn Div. Large Cap EQ (AR) Autocallable Coupon Notes, Ser. 512",structure:"Income",cls:"F",coupon:9.60,cd:"9.60% to 5.04%",barrier:-25,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Coupon Notes, Ser. 513",structure:"Income",cls:"A",coupon:8.16,cd:"8.16% to 3.84%",barrier:-25,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Coupon Notes, Ser. 505",structure:"Income",cls:"F",coupon:10.80,cd:"10.80% to 5.40%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Coupon Notes, Ser. 506",structure:"Income",cls:"A",coupon:9.00,cd:"9.00% to 4.44%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"CLOSING",name:"Cdn Div. Large Cap EQ (AR) Autocallable Coupon Notes, Ser. 502 (USD)",structure:"Income",cls:"F",coupon:11.76,cd:"11.76% to 4.08%",barrier:-25,term:7,ucat:"cdn-eq",currency:"USD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Canada Banks EW (AR) Autocallable Coupon Buffer Notes, Ser. 57",structure:"Income",cls:"A",coupon:6.84,cd:"6.84%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"European Banks (AR) Autocallable Coupon Buffer Notes, Ser. 14 (USD)",structure:"Income",cls:"A",coupon:11.64,cd:"11.64%",barrier:-20,term:7,ucat:"global",currency:"USD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"NVIDIA Autocallable Coupon Buffer Notes, Ser. 36 (USD)",structure:"Income",cls:"A",coupon:11.88,cd:"11.88%",barrier:-30,term:5,ucat:"single",currency:"USD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Broadcom Inc. Autocallable Coupon Buffer Notes, Ser. 14 (USD)",structure:"Income",cls:"A",coupon:15.00,cd:"15.00%",barrier:-30,term:5,ucat:"single",currency:"USD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"CLOSING",name:"U.S. Big Banks Hedged CAD (AR) Autocallable Coupon Buffer Notes, Ser. 62",structure:"Income",cls:"F",coupon:14.76,cd:"14.76%",barrier:-20,term:7,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"CIBC",status:"NEW",name:"U.S. Big Banks Hedged CAD (AR) Autocallable Coupon Notes, Ser. 367",structure:"Income",cls:"F",coupon:11.04,cd:"11.04%",barrier:-30,term:7,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Cdn Energy Select (AR) Autocallable Coupon Notes, Ser. 269",structure:"Income",cls:"A",coupon:12.96,cd:"12.96%",barrier:-10,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.75,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Palantir Technologies Autocallable Coupon Notes, Ser. 55",structure:"Income",cls:"F",coupon:18.12,cd:"18.12%",barrier:-40,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Broadcom Inc. Autocallable Coupon Notes, Ser. 12",structure:"Income",cls:"F",coupon:15.60,cd:"15.60%",barrier:-35,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Intel Corporation Autocallable Coupon Notes, Ser. 11",structure:"Income",cls:"F",coupon:19.44,cd:"19.44%",barrier:-40,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Energy Select (AR) Autocallable Coupon Notes, Ser. 268",structure:"Income",cls:"F",coupon:11.28,cd:"11.28%",barrier:-25,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"U.S. Big Banks Hedged CAD (AR) Autocallable Coupon Notes, Ser. 364",structure:"Income",cls:"F",coupon:12.00,cd:"12.00%",barrier:-30,term:7,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Canada Banks EW (AR) Autocallable Coupon Notes, Ser. 263",structure:"Income",cls:"F",coupon:8.76,cd:"8.76%",barrier:-25,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"CLOSING",name:"U.S. Big Banks Hedged CAD (AR) Autocallable Coupon Notes, Ser. 362",structure:"Income",cls:"F",coupon:15.60,cd:"15.60%",barrier:-20,term:7,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"CIBC",status:"CLOSING",name:"Intel Corporation Autocallable Coupon Notes, Ser. 10",structure:"Income",cls:"F",coupon:18.72,cd:"18.72%",barrier:-40,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 18",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Cdn Div. Large Cap EQ (AR) Autocallable Notes, Ser. 862",structure:"Autocallable",cls:"A",coupon:12.00,cd:"12.00% to 6.00%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Notes, Ser. 854",structure:"Autocallable",cls:"F",coupon:25.00,cd:"25.00% to 2.00%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Cdn Energy Select (AR) Autocallable Notes, Ser. 281",structure:"Autocallable",cls:"A",coupon:11.60,cd:"11.60% fixed",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:3,closing:"Mar 25",pp:false},
-{issuer:"CIBC",status:"NEW",name:"U.S. Big Banks Hedged CAD (AR) Autocallable Notes, Ser. 209",structure:"Autocallable",cls:"A",coupon:11.50,cd:"11.50% fixed",barrier:-30,term:5,ucat:"us-bank",currency:"CAD",commission:2.75,closing:"Mar 26",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Notes, Ser. 857",structure:"Autocallable",cls:"F",coupon:13.00,cd:"13.00% fixed",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"U.S. Large Cap Energy Select Hedged CAD (AR) Autocallable Notes, Ser. 165",structure:"Autocallable",cls:"F",coupon:15.50,cd:"15.50% fixed",barrier:-40,term:7,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"OPEN",name:"Canada Banks EW (AR) Autocallable Notes, Ser. 256",structure:"Autocallable",cls:"F",coupon:10.25,cd:"10.25% fixed",barrier:-25,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"CIBC",status:"NEW",name:"Cdn Div. Large Cap EQ (AR) Autocallable Deposit Notes, Ser. 182",structure:"PPN",cls:"A",coupon:5.50,cd:"5.50% p.a.",barrier:0,term:7,ucat:"cdn-eq",currency:"CAD",commission:1.5,closing:"Mar 27",pp:true},
-{issuer:"CIBC",status:"OPEN",name:"Cdn Div. Large Cap EQ (AR) Autocallable Deposit Notes, Ser. 181",structure:"PPN",cls:"F",coupon:6.50,cd:"6.50% p.a.",barrier:0,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 24",pp:true},
-{issuer:"CIBC",status:"OPEN",name:"Canadian Financials Market Return GICs (3 yr)",structure:"MLGIC",cls:"A",coupon:null,cd:"100% part., 14% max",barrier:0,term:3,ucat:"cdn-bank",currency:"CAD",commission:1,closing:"Mar 31",pp:true},
-{issuer:"CIBC",status:"OPEN",name:"Canadian Financials Market Return GICs (5 yr)",structure:"MLGIC",cls:"A",coupon:null,cd:"100% part., 30% max",barrier:0,term:5,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 31",pp:true},
-{issuer:"NBC",status:"OPEN",name:"Sol. Canada Insurance Index 5% AR Auto Callable (F)",structure:"Autocallable",cls:"F",coupon:11.00,cd:"11%|22%|...|77%",barrier:-30,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. EW Canada Banks 5% AR Auto Callable (F)",structure:"Autocallable",cls:"F",coupon:11.50,cd:"11.5%|23%|...|80.5%",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. Canada Pipelines AR 115 Auto Callable",structure:"Autocallable",cls:"A",coupon:10.00,cd:"10%|20%|...|50%",barrier:-30,term:5,ucat:"cdn-other",currency:"CAD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"NBC",status:"OPEN",name:"EURO STOXX 50 Auto Callable Contingent Income (F)",structure:"Income",cls:"F",coupon:7.02,cd:"7.02% contingent monthly",barrier:-30,term:7,ucat:"global",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"NBC",status:"OPEN",name:"North American Tech-Software Contingent Income (F)",structure:"Income",cls:"F",coupon:8.04,cd:"8.04% contingent monthly",barrier:-30,term:5,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"NBC",status:"OPEN",name:"American Market (XSP) Contingent Income (F)",structure:"Income",cls:"F",coupon:6.24,cd:"6.24% contingent monthly",barrier:-30,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. Canada Insurance 5% AR Contingent Income (F, -25%)",structure:"Income",cls:"F",coupon:8.52,cd:"8.52% contingent monthly",barrier:-25,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Apr 1",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. GBS US 500 Hedged CAD 3% Dec. Contingent Income (F)",structure:"Income",cls:"F",coupon:7.50,cd:"7.50% contingent monthly",barrier:-30,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. GBS US 500 3% Dec. Contingent Income (F, USD)",structure:"Income",cls:"F",coupon:8.52,cd:"8.52% contingent monthly",barrier:-30,term:7,ucat:"us-lc",currency:"USD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. Gold Miners Hedged CAD 3% Dec. Contingent Income (F)",structure:"Income",cls:"F",coupon:13.56,cd:"13.56% contingent monthly",barrier:-30,term:5,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 19",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. US 2000 Hedged CAD 3% Dec. Contingent Income (F)",structure:"Income",cls:"F",coupon:9.48,cd:"9.48% contingent monthly",barrier:-25,term:5,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. US Big Banks Hedged CAD 3.25% AR Contingent Income (F, -30%)",structure:"Income",cls:"F",coupon:11.28,cd:"11.28% contingent monthly",barrier:-30,term:5,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. US Big Banks Hedged CAD 3.25% AR Contingent Income (-25%)",structure:"Income",cls:"A",coupon:9.00,cd:"9.00% contingent monthly",barrier:-25,term:5,ucat:"us-bank",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Sol. US Big Banks Index 3.25% AR Contingent Income (USD)",structure:"Income",cls:"A",coupon:9.00,cd:"9.00% contingent monthly",barrier:-25,term:5,ucat:"us-bank",currency:"USD",commission:3,closing:"Mar 25",pp:false},
-{issuer:"NBC",status:"OPEN",name:"Canadian Banks (5% AR) Flex GIC, Ser. 49",structure:"MLGIC",cls:"A",coupon:null,cd:"135% participation",barrier:0,term:6,ucat:"cdn-bank",currency:"CAD",commission:3,closing:"Mar 31",pp:true},
-{issuer:"NBC",status:"OPEN",name:"Auto Callable Canadian Market XIU Flex GIC, Ser. 2",structure:"MLGIC",cls:"A",coupon:null,cd:"5.20%|...|36.40% autocall",barrier:0,term:7,ucat:"cdn-eq",currency:"CAD",commission:2,closing:"Mar 31",pp:true},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Insurance Basket Autocallable Notes, Ser. 150",structure:"Autocallable",cls:"A",coupon:9.50,cd:"9.50%|19%|...|66.50%",barrier:-20,term:7,ucat:"cdn-other",currency:"CAD",commission:3,closing:"Mar 23",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Banks Basket Autocallable Notes, Ser. 541",structure:"Autocallable",cls:"A",coupon:7.75,cd:"7.75%|15.50%|...|54.25%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:3,closing:"Mar 23",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Semiconductor Basket Autocallable Notes, Ser. 7",structure:"Autocallable",cls:"A",coupon:23.00,cd:"23%|28%|33%|38%|43%",barrier:-25,term:5,ucat:"single",currency:"CAD",commission:3,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Energy (AR) Autocallable Notes, Ser. 57",structure:"Autocallable",cls:"A",coupon:11.85,cd:"11.85%|23.70%|...|82.95%",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:3,closing:"Mar 31",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Healthcare (AR) Autocallable Notes, Ser. 39",structure:"Autocallable",cls:"A",coupon:10.00,cd:"10%|20%|...|70%",barrier:-20,term:7,ucat:"us-lc",currency:"CAD",commission:2.75,closing:"Mar 23",pp:false},
-{issuer:"BNS",status:"CLOSING",name:"BNS Canadian Banks (AR) Autocallable Notes, Ser. 539",structure:"Autocallable",cls:"A",coupon:6.50,cd:"6.50%|13%|...|45.50%",barrier:-40,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 20",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Large Cap (AR) Autocallable Notes, Ser. 65",structure:"Autocallable",cls:"A",coupon:5.75,cd:"5.75%|11.50%|...|40.25%",barrier:-25,term:7,ucat:"us-lc",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Emerging Markets (AR) Autocallable Notes, Ser. 2",structure:"Autocallable",cls:"A",coupon:10.50,cd:"10.50%|21%|...|73.50%",barrier:-25,term:7,ucat:"global",currency:"CAD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canada Large Cap (AR) Autocallable Notes, Ser. 56",structure:"Autocallable",cls:"A",coupon:8.00,cd:"8%|16%|...|56%",barrier:-30,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Apr 2",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Banks (AR) Autocallable Notes, Ser. 538F",structure:"Autocallable",cls:"F",coupon:8.50,cd:"8.50%|17%|...|59.50%",barrier:-40,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Large Cap (AR) Autocallable Notes, Ser. 66F",structure:"Autocallable",cls:"F",coupon:8.25,cd:"8.25%|16.50%|...|57.75%",barrier:-25,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Large Cap (AR) Autocallable Notes, Ser. 67F (USD)",structure:"Autocallable",cls:"F",coupon:12.00,cd:"12%|24%|...|84%",barrier:-20,term:7,ucat:"us-lc",currency:"USD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Emerging Markets (AR) Autocallable Notes, Ser. 1F",structure:"Autocallable",cls:"F",coupon:13.00,cd:"13%|26%|...|91%",barrier:-25,term:7,ucat:"global",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Banks Basket Autocallable Notes, Ser. 86F (USD)",structure:"Autocallable",cls:"F",coupon:15.00,cd:"15%|30%|45%|60%|75%",barrier:-25,term:5,ucat:"us-bank",currency:"USD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Energy (AR) Autocallable Notes, Ser. 58F",structure:"Autocallable",cls:"F",coupon:14.50,cd:"14.50%|29%|...|101.50%",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"BNS",status:"LIVE",name:"BNS Canadian Banks Basket Autocallable Notes, Ser. 542F",structure:"Autocallable",cls:"F",coupon:10.00,cd:"10%|20%|...|70%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Apr 8",pp:false},
-{issuer:"BNS",status:"LIVE",name:"BNS Canadian Insurance Basket Autocallable Notes, Ser. 151F",structure:"Autocallable",cls:"F",coupon:11.75,cd:"11.75%|23.50%|...|82.25%",barrier:-20,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Apr 8",pp:false},
-{issuer:"BNS",status:"CLOSING",name:"BNS U.S. Banks Basket Callable Contingent 11.28% Coupon Notes, Ser. 233 (USD)",structure:"Income",cls:"A",coupon:11.28,cd:"11.28% contingent monthly",barrier:-20,term:5,ucat:"us-bank",currency:"USD",commission:3,closing:"Mar 19",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Semiconductor Basket Callable Contingent 12.00% Coupon Notes, Ser. 37",structure:"Income",cls:"A",coupon:12.00,cd:"12.00% contingent monthly",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:3,closing:"Mar 24",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Cameco Corp. Callable Contingent 11.04% Coupon Notes, Ser. 13",structure:"Income",cls:"A",coupon:11.04,cd:"11.04% contingent monthly",barrier:-50,term:5,ucat:"single",currency:"CAD",commission:3,closing:"Apr 2",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Large Cap (AR) Callable Contingent 7.02% Coupon Notes, Ser. 110",structure:"Income",cls:"A",coupon:7.02,cd:"7.02% contingent monthly",barrier:-25,term:7,ucat:"us-lc",currency:"CAD",commission:2.75,closing:"Apr 7",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS EURO STOXX Banks Callable Contingent 8.70% Coupon Notes, Ser. 30",structure:"Income",cls:"A",coupon:8.70,cd:"8.70% contingent monthly",barrier:-30,term:7,ucat:"global",currency:"CAD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Banks (AR) Callable Contingent 6.15% Coupon Notes, Ser. 889",structure:"Income",cls:"A",coupon:6.15,cd:"6.15% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Cyber Security Basket Callable Contingent 11.22% Coupon Notes, Ser. 12F",structure:"Income",cls:"F",coupon:11.22,cd:"11.22% contingent monthly",barrier:-40,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Telecom (AR) Callable Contingent 7.20% Coupon Notes, Ser. 63F",structure:"Income",cls:"F",coupon:7.20,cd:"7.20% contingent monthly",barrier:-30,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Asset Mgmt Basket Callable Contingent 13.20% Coupon Notes, Ser. 6F (USD)",structure:"Income",cls:"F",coupon:13.20,cd:"13.20% contingent monthly",barrier:-40,term:5,ucat:"single",currency:"USD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS AMD Callable Contingent 18.51% Coupon Notes, Ser. 4F",structure:"Income",cls:"F",coupon:18.51,cd:"18.51% contingent monthly",barrier:-40,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Energy (AR) Callable Contingent 10.20% Coupon Notes, Ser. 43F",structure:"Income",cls:"F",coupon:10.20,cd:"10.20% contingent monthly",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"BNS",status:"LIVE",name:"BNS AMD Callable Contingent 22.08% Coupon Notes, Ser. 5F",structure:"Income",cls:"F",coupon:22.08,cd:"22.08% contingent monthly",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Apr 3",pp:false},
-{issuer:"BNS",status:"LIVE",name:"BNS Rocket Lab Callable Contingent 21.84% Geared Buffer Notes, Ser. 1F",structure:"Income",cls:"F",coupon:21.84,cd:"21.84% contingent monthly",barrier:-50,term:3,ucat:"single",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Cameco Corp. Callable Contingent 14.76% Coupon Notes, Ser. 12F",structure:"Income",cls:"F",coupon:14.76,cd:"14.76% contingent monthly",barrier:-45,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"BNS",status:"LIVE",name:"BNS Canadian Banks (AR) Callable Contingent 7.50% Coupon Notes, Ser. 892F",structure:"Income",cls:"F",coupon:7.50,cd:"7.50% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canada Large Cap (AR) Enhanced Participation Notes, Ser. 8",structure:"Accelerated",cls:"A",coupon:null,cd:"285% upside participation",barrier:0,term:5,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS Canadian Banks (AR) Barrier Plus Notes, Ser. 21F",structure:"Accelerated",cls:"F",coupon:null,cd:"235% upside participation",barrier:-30,term:6,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BNS",status:"OPEN",name:"BNS U.S. Large Cap (AR) Deposit Notes, Ser. 41",structure:"PPN",cls:"A",coupon:null,cd:"110% participation",barrier:0,term:4,ucat:"us-lc",currency:"CAD",commission:3,closing:"Mar 23",pp:true},
-{issuer:"BNS",status:"OPEN",name:"BNS Canada Large Cap (AR) Deposit Notes, Ser. 67",structure:"PPN",cls:"A",coupon:null,cd:"135% participation",barrier:0,term:5,ucat:"cdn-eq",currency:"CAD",commission:3,closing:"Mar 25",pp:true},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Telecom 145 AR Geared Buffered Accelerator, Ser. 33",structure:"Accelerated",cls:"A",coupon:null,cd:"460% participation",barrier:-15,term:7,ucat:"cdn-other",currency:"CAD",commission:3,closing:"Mar 30",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Telecom 145 AR Geared Buffered Accelerator, Ser. 34 (F)",structure:"Accelerated",cls:"F",coupon:null,cd:"500% participation",barrier:-15,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW Canada Banks 5% AR Barrier Booster, Ser. 36",structure:"Booster",cls:"A",coupon:null,cd:"66% Boost + 100% participation",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:4,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW Canada Banks 5% AR Barrier Booster, Ser. 37 (F)",structure:"Booster",cls:"F",coupon:null,cd:"76% Boost + 100% participation",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Alphabet Inc. Callable Contingent Yield 9.15%, Ser. 3628",structure:"Income",cls:"A",coupon:9.15,cd:"9.15% contingent monthly",barrier:-25,term:3,ucat:"single",currency:"CAD",commission:3,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"CLOSING",name:"RBC Bloomberg US Large Cap VolMax Callable Contingent Yield 11.22%, Ser. 1",structure:"Income",cls:"A",coupon:11.22,cd:"11.22% contingent monthly",barrier:-40,term:7,ucat:"us-lc",currency:"CAD",commission:2.5,closing:"Mar 20",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC US Power Grid Infrastructure Basket Callable Contingent Yield 11.37% (USD), Ser. 3569",structure:"Income",cls:"A",coupon:11.37,cd:"11.37% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"USD",commission:3,closing:"Mar 25",pp:false},
-{issuer:"RBC",status:"CLOSING",name:"RBC Sol. Canada Bank 70 AR Callable Contingent Yield, Ser. 3563",structure:"Income",cls:"A",coupon:7.56,cd:"7.56% (Y1-2) to 4.50%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 20",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip III AR Callable Contingent Yield 6.36%, Ser. 3578",structure:"Income",cls:"A",coupon:6.36,cd:"6.36% contingent monthly",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Energy Select 75 AR Callable Contingent Yield 9.51%, Ser. 3614",structure:"Income",cls:"A",coupon:9.51,cd:"9.51% contingent monthly",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.75,closing:"Mar 27",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW Canada Bank 30 AR Callable Contingent Yield 6.12%, Ser. 3612",structure:"Income",cls:"A",coupon:6.12,cd:"6.12% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Asset Manager Hedged AR 200 Callable Contingent Yield 13.74%, Ser. 3601",structure:"Income",cls:"A",coupon:13.74,cd:"13.74% contingent monthly",barrier:-30,term:7,ucat:"single",currency:"CAD",commission:3,closing:"Mar 26",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Blue Chip Select II CAD Hedged AR 370 Callable Contingent Yield 7.83%, Ser. 3582",structure:"Income",cls:"A",coupon:7.83,cd:"7.83% contingent monthly",barrier:-20,term:7,ucat:"us-lc",currency:"CAD",commission:2.5,closing:"Mar 25",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Semi Conductor Select CAD Hedged 2% AR Callable Contingent Yield 10.08%, Ser. 3616",structure:"Income",cls:"A",coupon:10.08,cd:"10.08% contingent monthly",barrier:-40,term:5,ucat:"us-lc",currency:"CAD",commission:2.75,closing:"Mar 27",pp:false},
-{issuer:"RBC",status:"CLOSING",name:"RBC Sol. Gold Miners Hedged CAD 3% Dec. Callable Contingent Yield 11.22%, Ser. 3559",structure:"Income",cls:"A",coupon:11.22,cd:"11.22% contingent monthly",barrier:-35,term:5,ucat:"us-energy",currency:"CAD",commission:3,closing:"Mar 19",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. US Energy EW Select 10 CAD Hedged 87 AR Callable Contingent Yield 10.83%, Ser. 3580",structure:"Income",cls:"A",coupon:10.83,cd:"10.83% contingent monthly",barrier:-25,term:7,ucat:"us-energy",currency:"CAD",commission:2.5,closing:"Mar 24",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Alphabet Inc. Callable Contingent Yield 11.85% (F), Ser. 3629",structure:"Income",cls:"F",coupon:11.85,cd:"11.85% contingent monthly",barrier:-25,term:3,ucat:"single",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"CLOSING",name:"RBC Bloomberg US Large Cap VolMax Callable Contingent Yield 14.01% (F), Ser. 2",structure:"Income",cls:"F",coupon:14.01,cd:"14.01% contingent monthly",barrier:-40,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC US Power Grid Infrastructure Basket Callable Contingent Yield 14.01% (F, USD), Ser. 3570",structure:"Income",cls:"F",coupon:14.01,cd:"14.01% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"USD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Energy Select 75 AR Callable Contingent Yield 11.19% (F), Ser. 3615",structure:"Income",cls:"F",coupon:11.19,cd:"11.19% contingent monthly",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW Canada Bank 30 AR Callable Contingent Yield 7.50% (F), Ser. 3613",structure:"Income",cls:"F",coupon:7.50,cd:"7.50% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Asset Manager Hedged AR 200 Callable Contingent Yield 16.71% (F), Ser. 3602",structure:"Income",cls:"F",coupon:16.71,cd:"16.71% contingent monthly",barrier:-30,term:7,ucat:"single",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Blue Chip Select II CAD Hedged AR 370 Callable Contingent Yield 9.63% (F), Ser. 3583",structure:"Income",cls:"F",coupon:9.63,cd:"9.63% contingent monthly",barrier:-20,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. EW US Semi Conductor Select CAD Hedged 2% AR Callable Contingent Yield 11.73% (F), Ser. 3617",structure:"Income",cls:"F",coupon:11.73,cd:"11.73% contingent monthly",barrier:-40,term:5,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"RBC",status:"CLOSING",name:"RBC Sol. Gold Miners Hedged CAD 3% Dec. Callable Contingent Yield 14.25% (F), Ser. 3560",structure:"Income",cls:"F",coupon:14.25,cd:"14.25% contingent monthly",barrier:-35,term:5,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 19",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. US Energy EW Select 10 CAD Hedged 87 AR Callable Contingent Yield 12.66% (F), Ser. 3581",structure:"Income",cls:"F",coupon:12.66,cd:"12.66% contingent monthly",barrier:-25,term:7,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip III AR Fixed 5.31%, Ser. 57",structure:"Fixed Yield",cls:"A",coupon:5.31,cd:"5.31% guaranteed monthly",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 24",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip III AR Fixed 5.70% (F), Ser. 58",structure:"Fixed Yield",cls:"F",coupon:5.70,cd:"5.70% guaranteed monthly",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Bank 70 AR Autocallable, Ser. 940",structure:"Autocallable",cls:"A",coupon:12.15,cd:"12.15%|17.15%|...|42.15%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip II AR Autocallable, Ser. 942",structure:"Autocallable",cls:"A",coupon:10.45,cd:"10.45%|15.45%|...|40.45%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip III AR Autocallable, Ser. 936",structure:"Autocallable",cls:"A",coupon:15.15,cd:"15.15%|19.65%|...|42.15%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Bank 70 AR Autocallable (F), Ser. 941",structure:"Autocallable",cls:"F",coupon:15.35,cd:"15.35%|20.35%|...|45.35%",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip II AR Autocallable (F), Ser. 943",structure:"Autocallable",cls:"F",coupon:13.65,cd:"13.65%|18.65%|...|43.65%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC Sol. Canada Blue Chip III AR Autocallable (F), Ser. 937",structure:"Autocallable",cls:"F",coupon:18.45,cd:"18.45%|22.95%|...|45.45%",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"RBC",status:"OPEN",name:"RBC PP Sol. Canada Blue Chip II AR LEOS, Ser. 14",structure:"PPN",cls:"A",coupon:null,cd:"145% participation",barrier:0,term:6,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 24",pp:true},
-{issuer:"RBC",status:"OPEN",name:"RBC PP Sol. EW Canada Banks 5% AR LEOS, Ser. 102",structure:"PPN",cls:"A",coupon:null,cd:"131% participation",barrier:0,term:5,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 17",pp:true},
-{issuer:"RBC",status:"OPEN",name:"RBC PP ETF Basket LEOS, Ser. 8",structure:"PPN",cls:"A",coupon:null,cd:"115% participation",barrier:0,term:4,ucat:"cdn-other",currency:"CAD",commission:2.5,closing:"Mar 18",pp:true},
-{issuer:"RBC",status:"OPEN",name:"RBC PP ETF Basket LEOS (F), Ser. 9",structure:"PPN",cls:"F",coupon:null,cd:"150% participation",barrier:0,term:4,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 18",pp:true},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Energy Select 75 AR AutoCallables (A)",structure:"Autocallable",cls:"A",coupon:11.65,cd:"11.65%|23.3%|...|81.55%",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW US Major Bank Daily Hedged CAD 104 AR AutoCallables (A)",structure:"Autocallable",cls:"A",coupon:11.25,cd:"11.25%|22.5%|...|78.75%",barrier:-30,term:7,ucat:"us-bank",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. US Diversified EW Equity Daily CAD Hedged 133 AR AutoCallables (A)",structure:"Autocallable",cls:"A",coupon:10.25,cd:"10.25%|20.5%|...|71.75%",barrier:-25,term:7,ucat:"us-lc",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Energy Select 75 AR AutoCallables (F)",structure:"Autocallable",cls:"F",coupon:13.70,cd:"13.7%|27.4%|...|95.9%",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW US Major Bank Daily Hedged CAD 104 AR AutoCallables (F)",structure:"Autocallable",cls:"F",coupon:13.25,cd:"13.25%|26.5%|...|92.75%",barrier:-30,term:7,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. US Diversified EW Equity Daily CAD Hedged 133 AR AutoCallables (F)",structure:"Autocallable",cls:"F",coupon:12.45,cd:"12.45%|24.9%|...|87.15%",barrier:-25,term:7,ucat:"us-lc",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. US Energy EW Select 10 Daily Hedged CAD 56 AR AutoCallables (F)",structure:"Autocallable",cls:"F",coupon:16.30,cd:"16.3%|32.6%|...|114.1%",barrier:-30,term:7,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap III 162 AR OTM AutoCallables (A)",structure:"Autocallable",cls:"A",coupon:10.50,cd:"10.5%|21%|...|52.5%",barrier:-20,term:5,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 24",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap III 162 AR OTM AutoCallables (F)",structure:"Autocallable",cls:"F",coupon:12.50,cd:"12.5%|25%|...|62.5%",barrier:-20,term:5,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Oracle Corp. AutoCallable Step-Down (A)",structure:"Autocallable",cls:"A",coupon:18.90,cd:"18.9%|37.8%|...|94.5% step-down",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Oracle Corp. AutoCallable Step-Down (F)",structure:"Autocallable",cls:"F",coupon:21.55,cd:"21.55%|43.1%|...|107.75% step-down",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW Canada Bank 30 AR Contingent Callable Income Geared Buffer (A)",structure:"Income",cls:"A",coupon:4.80,cd:"4.80% contingent monthly",barrier:-50,term:7,ucat:"cdn-bank",currency:"CAD",commission:1.75,closing:"Mar 31",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO AMD Contingent Callable Income (A)",structure:"Income",cls:"A",coupon:17.46,cd:"17.46% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Blackstone Inc. Contingent Callable Income (A)",structure:"Income",cls:"A",coupon:14.13,cd:"14.13% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Broadcom Inc. Contingent Callable Income (A)",structure:"Income",cls:"A",coupon:15.39,cd:"15.39% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Marvell Technology Contingent Callable Income (A)",structure:"Income",cls:"A",coupon:14.70,cd:"14.70% contingent monthly",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Energy Select 75 AR Contingent Callable Income (A, -25%)",structure:"Income",cls:"A",coupon:8.49,cd:"8.49% contingent monthly",barrier:-25,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.5,closing:"Mar 20",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Select Large Cap III 162 AR Contingent Callable Income (A, -20%)",structure:"Income",cls:"A",coupon:7.23,cd:"7.23% contingent monthly",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. EW Canada Bank 30 AR Contingent Callable Income (A, -20%)",structure:"Income",cls:"A",coupon:6.87,cd:"6.87% contingent monthly",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 24",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW Canada Bank 30 AR Contingent Callable Income (A, -25%)",structure:"Income",cls:"A",coupon:6.75,cd:"6.75% contingent monthly",barrier:-25,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW Canada Bank 30 AR Contingent Callable Income (A, -30%)",structure:"Income",cls:"A",coupon:6.21,cd:"6.21% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 31",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW US Major Bank Daily Hedged CAD 104 AR Contingent Callable Income (A, -20%)",structure:"Income",cls:"A",coupon:11.64,cd:"11.64% contingent monthly",barrier:-20,term:7,ucat:"us-bank",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. US Energy EW Select 10 Daily Hedged CAD 56 AR Contingent Callable Income (A)",structure:"Income",cls:"A",coupon:10.56,cd:"10.56% contingent monthly",barrier:-25,term:7,ucat:"us-energy",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Blackstone Inc. Contingent Callable Income (F)",structure:"Income",cls:"F",coupon:17.16,cd:"17.16% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Broadcom Inc. Contingent Callable Income (F)",structure:"Income",cls:"F",coupon:18.69,cd:"18.69% contingent monthly",barrier:-30,term:3,ucat:"single",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Marvell Technology Contingent Callable Income (F)",structure:"Income",cls:"F",coupon:17.85,cd:"17.85% contingent monthly",barrier:-30,term:5,ucat:"single",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Energy Select 75 AR Contingent Callable Income (F, -25%)",structure:"Income",cls:"F",coupon:11.01,cd:"11.01% contingent monthly",barrier:-25,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 16",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Energy Select 75 AR Contingent Callable Income (F, -30%)",structure:"Income",cls:"F",coupon:9.63,cd:"9.63% contingent monthly",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap III 162 AR Contingent Callable Income (F, -20%)",structure:"Income",cls:"F",coupon:8.58,cd:"8.58% contingent monthly",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW Canada Bank 30 AR Contingent Callable Income (F, -20%)",structure:"Income",cls:"F",coupon:9.54,cd:"9.54% contingent monthly",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. EW US Major Bank Daily Hedged CAD 104 AR Contingent Callable Income (F, -20%, 5yr)",structure:"Income",cls:"F",coupon:15.18,cd:"15.18% contingent monthly",barrier:-20,term:5,ucat:"us-bank",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. US Energy EW Select 10 Daily Hedged CAD 56 AR Contingent Callable Income (F)",structure:"Income",cls:"F",coupon:12.87,cd:"12.87% contingent monthly",barrier:-25,term:7,ucat:"us-energy",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap III 162 AR Barrier Twin Win (A)",structure:"Booster",cls:"A",coupon:null,cd:"105% upside + abs. return -35% to 0%",barrier:-35,term:4,ucat:"cdn-eq",currency:"CAD",commission:3.5,closing:"Mar 24",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap III 162 AR Boosters (A)",structure:"Booster",cls:"A",coupon:null,cd:"50% boost, 100% above",barrier:-20,term:5,ucat:"cdn-eq",currency:"CAD",commission:4,closing:"Mar 27",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Telecom 145 AR Geared Buffer Accelerators (F)",structure:"Accelerated",cls:"F",coupon:null,cd:"300% participation",barrier:-30,term:5,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. EW Canada Banks 5% AR Accelerators with Barrier (F)",structure:"Accelerated",cls:"F",coupon:null,cd:"323.78% participation",barrier:-10,term:5,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"BMO",status:"OPEN",name:"BMO Sol. Canada Select Large Cap II 333 AR PP Notes",structure:"PPN",cls:"A",coupon:null,cd:"75% participation",barrier:0,term:4,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 27",pp:true},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Telecom 145 AR PP Notes",structure:"PPN",cls:"A",coupon:null,cd:"155% participation",barrier:0,term:5,ucat:"cdn-other",currency:"CAD",commission:2.5,closing:"Apr 6",pp:true},
-{issuer:"BMO",status:"NEW",name:"BMO Sol. Canada Telecom 145 AR PP Notes (F)",structure:"PPN",cls:"F",coupon:null,cd:"187% participation",barrier:0,term:5,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Apr 6",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD Canada Banks 5% AR Accelerator Notes, Ser. 20F",structure:"Accelerated",cls:"F",coupon:null,cd:"295% participation",barrier:0,term:5,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Bank 70 AR Autocallable Notes, Ser. 930",structure:"Autocallable",cls:"A",coupon:10.00,cd:"10%|20%|30%|40%|50%",barrier:-20,term:5,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 30",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Bank 70 AR Autocallable Notes, Ser. 931F",structure:"Autocallable",cls:"F",coupon:12.65,cd:"12.65%|25.3%|...|63.25%",barrier:-20,term:5,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 30",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canadian Large Cap Diversified EQ 265 AR Autocallable Notes, Ser. 929",structure:"Autocallable",cls:"A",coupon:8.00,cd:"8%|16%|24%|32%|40%",barrier:-20,term:5,ucat:"cdn-eq",currency:"CAD",commission:2.75,closing:"Mar 30",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD AVGO Equity-Linked Autocallable Coupon Notes (USD), Ser. 3102",structure:"Income",cls:"A",coupon:12.00,cd:"12.00% contingent monthly",barrier:-50,term:3,ucat:"single",currency:"USD",commission:3,closing:"Mar 19",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD DELL Equity-Linked Autocallable Coupon Notes (USD), Ser. 3105",structure:"Income",cls:"A",coupon:11.76,cd:"11.76% contingent monthly",barrier:-50,term:3,ucat:"single",currency:"USD",commission:3,closing:"Mar 19",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD INTC Equity-Linked Autocallable Coupon Notes, Ser. 3104",structure:"Income",cls:"A",coupon:13.63,cd:"13.63% contingent monthly",barrier:-50,term:3,ucat:"single",currency:"CAD",commission:3,closing:"Mar 19",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3086",structure:"Income",cls:"A",coupon:7.20,cd:"7.20% contingent monthly",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3087F",structure:"Income",cls:"F",coupon:9.00,cd:"9.00% contingent monthly",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 19",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3082F",structure:"Income",cls:"F",coupon:8.00,cd:"8.00% contingent monthly",barrier:-25,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 18",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3088",structure:"Income",cls:"A",coupon:6.60,cd:"6.60% contingent monthly",barrier:-25,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 24",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3083F",structure:"Income",cls:"F",coupon:7.44,cd:"7.44% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 25",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Coupon Notes (USD), Ser. 3089",structure:"Income",cls:"A",coupon:7.44,cd:"7.44% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"USD",commission:2.5,closing:"Mar 20",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Coupon Notes (USD), Ser. 3106F",structure:"Income",cls:"F",coupon:8.70,cd:"8.70% contingent monthly",barrier:-30,term:7,ucat:"cdn-bank",currency:"USD",commission:0,closing:"Mar 31",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD Canada Bank 70 AR Autocallable Coupon Notes, Ser. 3080F",structure:"Income",cls:"F",coupon:6.60,cd:"6.60% contingent monthly",barrier:-40,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 18",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Energy Select 75 AR Autocallable Coupon Notes, Ser. 3108",structure:"Income",cls:"A",coupon:11.04,cd:"11.04% contingent monthly",barrier:-20,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.75,closing:"Mar 26",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Energy Select 75 AR Autocallable Coupon Notes, Ser. 3109",structure:"Income",cls:"A",coupon:9.60,cd:"9.60% contingent monthly",barrier:-25,term:7,ucat:"cdn-energy",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Energy Select 75 AR Autocallable Coupon Notes, Ser. 3107F",structure:"Income",cls:"F",coupon:10.14,cd:"10.14% contingent monthly",barrier:-30,term:7,ucat:"cdn-energy",currency:"CAD",commission:0,closing:"Mar 26",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD Canada Insurance 220 AR Autocallable Coupon Notes, Ser. 3077",structure:"Income",cls:"A",coupon:7.25,cd:"7.25% contingent monthly",barrier:-20,term:7,ucat:"cdn-other",currency:"CAD",commission:2.5,closing:"Mar 19",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Utilities 200 AR Autocallable Coupon Notes, Ser. 3098",structure:"Income",cls:"A",coupon:6.30,cd:"6.30% contingent monthly",barrier:-20,term:7,ucat:"cdn-other",currency:"CAD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Utilities 200 AR Autocallable Coupon Notes (USD), Ser. 3100",structure:"Income",cls:"A",coupon:6.60,cd:"6.60% contingent monthly",barrier:-25,term:7,ucat:"cdn-other",currency:"USD",commission:2.5,closing:"Mar 27",pp:false},
-{issuer:"TD",status:"CLOSING",name:"TD Canada Utilities 200 AR Autocallable Coupon Notes, Ser. 3064F",structure:"Income",cls:"F",coupon:6.00,cd:"6.00% contingent monthly",barrier:-30,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 17",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Utilities 200 AR Autocallable Coupon Notes, Ser. 3099F",structure:"Income",cls:"F",coupon:6.60,cd:"6.60% contingent monthly",barrier:-30,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 27",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Utilities 200 AR Autocallable Coupon Notes (USD), Ser. 3097F",structure:"Income",cls:"F",coupon:7.31,cd:"7.31% contingent monthly",barrier:-30,term:7,ucat:"cdn-other",currency:"USD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canadian Large Cap Diversified EQ 265 AR Autocallable Coupon Notes, Ser. 3110",structure:"Income",cls:"A",coupon:6.00,cd:"6.00% contingent monthly",barrier:-30,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 26",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Bank 70 AR Autocallable Memory Coupon Notes, Ser. 232",structure:"Income",cls:"A",coupon:6.80,cd:"6.80% memory coupon semi-annual",barrier:-20,term:7,ucat:"cdn-bank",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canadian Large Cap Diversified EQ 265 AR Autocallable Memory Coupon Notes, Ser. 233",structure:"Income",cls:"A",coupon:6.53,cd:"6.53% memory coupon semi-annual",barrier:-20,term:7,ucat:"cdn-eq",currency:"CAD",commission:2.5,closing:"Mar 23",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Pipelines AR 115 Boosted Return Plus Notes, Ser. 453F",structure:"Booster",cls:"F",coupon:null,cd:"55% boosted return + 100% above",barrier:-30,term:5,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 24",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canadian Large Cap Diversified EQ 265 AR Boosted Return Plus Notes, Ser. 450F",structure:"Booster",cls:"F",coupon:null,cd:"60% boosted return + 100% above",barrier:-20,term:5,ucat:"cdn-eq",currency:"CAD",commission:0,closing:"Mar 20",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canadian Large Cap Diversified EQ 265 AR Barrier Accelerator Twin-Win, Ser. 16",structure:"Booster",cls:"A",coupon:null,cd:"130% participation + absolute return",barrier:-15,term:2,ucat:"cdn-eq",currency:"CAD",commission:1.5,closing:"Mar 17",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canada Banks 5% AR Barrier Accelerator Notes, Ser. 118F",structure:"Accelerated",cls:"F",coupon:null,cd:"300% participation",barrier:-10,term:6,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 23",pp:false},
-{issuer:"TD",status:"OPEN",name:"TD Canadian Large Cap Diversified EQ 265 AR Boosted Return Plus Notes, Ser. 451",structure:"Booster",cls:"A",coupon:null,cd:"50% boosted return + 100% above",barrier:-30,term:5,ucat:"cdn-eq",currency:"CAD",commission:3,closing:"Mar 20",pp:false},
-{issuer:"TD",status:"SOON",name:"TD Canada Pipelines AR 115 Autocallable PP Notes, Ser. 187F",structure:"PPN",cls:"F",coupon:5.50,cd:"5.50%|11%|...|38.50%",barrier:0,term:7,ucat:"cdn-other",currency:"CAD",commission:0,closing:"Mar 25",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD Canadian Large Cap Diversified EQ 265 AR Growth Notes, Ser. 929",structure:"PPN",cls:"A",coupon:null,cd:"137.5% participation",barrier:0,term:7,ucat:"cdn-eq",currency:"CAD",commission:3,closing:"Mar 19",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD Canada Banks 5% AR Growth Notes, Ser. 935",structure:"PPN",cls:"A",coupon:null,cd:"160% participation",barrier:0,term:7,ucat:"cdn-bank",currency:"CAD",commission:3,closing:"Mar 27",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD Canada Banks 5% AR Growth Notes, Ser. 927F",structure:"PPN",cls:"F",coupon:null,cd:"185% participation",barrier:0,term:7,ucat:"cdn-bank",currency:"CAD",commission:0,closing:"Mar 16",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD Canada Utilities 5% AR Growth Notes, Ser. 932",structure:"PPN",cls:"A",coupon:null,cd:"143% participation",barrier:0,term:5,ucat:"cdn-other",currency:"CAD",commission:3.25,closing:"Mar 20",pp:true},
-{issuer:"TD",status:"OPEN",name:"TD XSP ETF-Linked Growth Notes, Ser. 934",structure:"PPN",cls:"A",coupon:null,cd:"100% participation, 28% excess strike",barrier:0,term:6,ucat:"us-lc",currency:"CAD",commission:2.75,closing:"Mar 23",pp:true},
+// ── PASTE YOUR NOTES ARRAY HERE ──────────────────────────────────────────────
+// To update weekly: replace the NOTES array below with new data
+// Future enhancement: replace with fetch('notes.json') for easier updates
+const NOTES = [
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Contingent Coupon Ser.512",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:9.60,couponNote:"9.60% for 2yr then 5.04%",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22208"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Contingent Coupon Ser.505",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:10.80,couponNote:"10.80% for 2yr then 5.40%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22148"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Contingent Coupon Ser.506",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:9.00,couponNote:"9.00% for 2yr then 4.44%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22149"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Contingent Coupon Ser.504",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"7.44% p.a.",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22147"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Contingent Coupon Ser.507",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.12,couponNote:"6.12% p.a.",barrier:40,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22171"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Memory Coupon Ser.17",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.00,couponNote:"7.00% with memory",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Closed",fs:"CBL22106"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Buffer Ser.62",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:14.76,couponNote:"14.76% geared buffer",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"CBL22145"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Ser.367",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.04,couponNote:"11.04% p.a.",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22192"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Ser.364",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:12.00,couponNote:"12.00% p.a.",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22160"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Ser.365",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:9.72,couponNote:"9.72% p.a.",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22161"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Ser.362",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:15.60,couponNote:"15.60% p.a.",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"CBL22138"},
+  {issuer:"CIBC",name:"US Big Banks Contingent Coupon Ser.363",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:12.60,couponNote:"12.60% p.a.",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Closed",fs:"CBL22139"},
+  {issuer:"CIBC",name:"Canada Banks EW Contingent Coupon Ser.261",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:8.04,couponNote:"8.04% p.a.",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22168"},
+  {issuer:"CIBC",name:"Canada Banks EW Contingent Coupon Ser.263",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:8.76,couponNote:"8.76% p.a.",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22176"},
+  {issuer:"CIBC",name:"Canada Banks EW Contingent Coupon Ser.262",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% p.a.",barrier:40,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22170"},
+  {issuer:"CIBC",name:"Canada Banks EW Contingent Coupon Ser.264",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:8.04,couponNote:"8.04% p.a.",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22177"},
+  {issuer:"CIBC",name:"Canada Banks EW Coupon Buffer Ser.57",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.84,couponNote:"6.84% geared buffer",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22185"},
+  {issuer:"CIBC",name:"Canadian Energy Select Contingent Coupon Ser.268",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:11.28,couponNote:"11.28% p.a.",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22159"},
+  {issuer:"CIBC",name:"Canadian Energy Select Contingent Coupon Ser.266",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:9.12,couponNote:"9.12% p.a.",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22157"},
+  {issuer:"CIBC",name:"Canadian Energy Select Contingent Coupon Ser.267",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:8.16,couponNote:"8.16% p.a.",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22158"},
+  {issuer:"CIBC",name:"US Select Regional Banks Contingent Coupon Ser.19",underlying:"Solactive US Select Regional Bank Index AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:7.20,couponNote:"7.20% semi-annual",barrier:40,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22146"},
+  {issuer:"CIBC",name:"Canadian Utilities Contingent Coupon Ser.118",underlying:"Solactive Canada Utilities 160 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:7.04,couponNote:"7.04% quarterly",barrier:20,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"CBL22156"},
+  {issuer:"CIBC",name:"European Banks Coupon Buffer Ser.14",underlying:"MerQube Euro Zone Large Cap Banks 20 AR Index",theme:"Global / European / EM",sector:"",struct:"Contingent Coupon",coupon:11.64,couponNote:"11.64% geared buffer",barrier:20,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"CBL22200"},
+  {issuer:"CIBC",name:"Canada Banks EW Autocallable Ser.256",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.25,couponNote:"10.25%/yr cumulative",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22166"},
+  {issuer:"CIBC",name:"Canada Banks EW Autocallable Ser.257",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.50,couponNote:"10.50%/yr cumulative",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22167"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Ser.854",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:25.00,couponNote:"25%/yr yr1 then 2%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22150"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Ser.855",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:21.00,couponNote:"21%/yr yr1 then 2%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22151"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Ser.857",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:13.00,couponNote:"13%/yr cumulative",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22153"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Ser.862",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:12.00,couponNote:"12%/yr for 2yr then 6%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22184"},
+  {issuer:"CIBC",name:"US Large Cap Energy Select Autocallable Ser.165",underlying:"Solactive US Large Cap Energy Select Hedged to CAD Index AR",theme:"Sector",sector:"US Energy",struct:"Autocallable",coupon:15.50,couponNote:"15.50%/yr cumulative",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL22165"},
+  {issuer:"CIBC",name:"US Large Cap Energy Select Autocallable Ser.164",underlying:"Solactive US Large Cap Energy Select Hedged to CAD Index AR",theme:"Sector",sector:"US Energy",struct:"Autocallable",coupon:13.00,couponNote:"13%/yr cumulative",barrier:45,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22164"},
+  {issuer:"CIBC",name:"US Big Banks Autocallable Ser.209",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Autocallable",coupon:11.50,couponNote:"11.50%/semi-annual",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22199"},
+  {issuer:"CIBC",name:"US Big Banks Autocallable Ser.210",underlying:"Solactive US Big Banks Hedged to CAD 60 AR Index",theme:"US Banks",sector:"",struct:"Autocallable",coupon:11.00,couponNote:"11.00%/quarterly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22210"},
+  {issuer:"CIBC",name:"US Large Cap REITs Autocallable Ser.59",underlying:"Solactive US Large Cap REITs Select Hedged to CAD Index AR",theme:"Sector",sector:"REITs",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/semi-annual",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL22179"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Deposit Ser.181",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:6.50,couponNote:"6.50%/yr autocall PPN",barrier:0,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL31355"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Deposit Ser.182",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:5.50,couponNote:"5.50%/yr autocall PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL31359"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Autocallable Deposit Ser.183",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:6.00,couponNote:"6.00%/yr autocall PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL31360"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Growth Deposit Ser.116",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"90% participation",barrier:0,term:"2yr",cls:"F",ccy:"CAD",status:"Active",fs:"CBL31352"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Growth Deposit Ser.118",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"250% participation, 70% cap",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL31358"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Lookback Growth Deposit Ser.42",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"330% participation, 53% max",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL31356"},
+  {issuer:"CIBC",name:"Can. Diversified Large Cap Boosted Return Deposit Ser.31",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"32% boosted return",barrier:0,term:"5yr",cls:"A",ccy:"USD",status:"Active",fs:"CBL31357"},
+  {issuer:"CIBC",name:"Canadian Financials MLGIC 5yr",underlying:"Solactive Canada Bank Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation, 30% max",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL8077"},
+  {issuer:"CIBC",name:"Canadian Financials MLGIC 3yr",underlying:"Solactive Canada Bank Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation, 14% max",barrier:0,term:"3yr",cls:"A",ccy:"CAD",status:"Active",fs:"CBL8076"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Autocallable (F)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:11.50,couponNote:"11.50%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC35243"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Autocallable (A)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.05,couponNote:"10.05%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC35245"},
+  {issuer:"NBC",name:"Canada Insurance 5% AR Autocallable (F)",underlying:"Solactive Canada Insurance Index 5% AR",theme:"Sector",sector:"Insurance",struct:"Autocallable",coupon:11.00,couponNote:"11.00%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC35240"},
+  {issuer:"NBC",name:"Canada Pipelines AR 115 Autocallable",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"NBC35248"},
+  {issuer:"NBC",name:"Canada Telecom 145 AR Autocallable (F)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"Autocallable",coupon:9.50,couponNote:"9.50%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC35247"},
+  {issuer:"NBC",name:"US Energy (XOP) Autocallable (F)",underlying:"Solactive US Energy (XOP) Hedged to CAD Index Decrement 3%",theme:"Sector",sector:"US Energy",struct:"Autocallable",coupon:12.25,couponNote:"12.25%/yr cumulative",barrier:30,term:"5yr",cls:"F",ccy:"CAD",status:"Closed",fs:"NBC35239"},
+  {issuer:"NBC",name:"EURO STOXX 50 Callable Contingent Income (F)",underlying:"EURO STOXX 50 Index (SX5E)",theme:"Global / European / EM",sector:"",struct:"Contingent Coupon",coupon:7.02,couponNote:"7.02% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31721"},
+  {issuer:"NBC",name:"Tech-Software (IGV) Callable Contingent Income (F)",underlying:"iShares Expanded Tech-Software Sector ETF (IGV)",theme:"Sector",sector:"Tech/Software",struct:"Contingent Coupon",coupon:8.04,couponNote:"8.04% contingent monthly",barrier:30,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31712"},
+  {issuer:"NBC",name:"S&P 500 (XSP) Callable Contingent Income (F)",underlying:"iShares S&P 500 Index ETF CAD Hedged (XSP)",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:6.24,couponNote:"6.24% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31716"},
+  {issuer:"NBC",name:"S&P 500 (XSP) Callable Contingent Income (A)",underlying:"iShares S&P 500 Index ETF CAD Hedged (XSP)",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:5.24,couponNote:"5.24% contingent semi-annual",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31733"},
+  {issuer:"NBC",name:"Canadian Market (XIU) Callable Contingent Income (F)",underlying:"iShares S&P/TSX 60 ETF (XIU)",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.52,couponNote:"5.52% contingent semi-annual",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31710"},
+  {issuer:"NBC",name:"Canadian Market (XIU) Callable Contingent Income (A)",underlying:"iShares S&P/TSX 60 ETF (XIU)",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.04,couponNote:"5.04% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31697"},
+  {issuer:"NBC",name:"Canada Insurance 5% AR Contingent Income (F) -30%",underlying:"Solactive Canada Insurance Index 5% AR",theme:"Sector",sector:"Insurance",struct:"Contingent Coupon",coupon:7.56,couponNote:"7.56% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31705"},
+  {issuer:"NBC",name:"Canada Insurance 5% AR Contingent Income (F) -25%",underlying:"Solactive Canada Insurance Index 5% AR",theme:"Sector",sector:"Insurance",struct:"Contingent Coupon",coupon:8.52,couponNote:"8.52% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"NBC31748"},
+  {issuer:"NBC",name:"Canada Insurance 5% AR Contingent Income (A)",underlying:"Solactive Canada Insurance Index 5% AR",theme:"Sector",sector:"Insurance",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31723"},
+  {issuer:"NBC",name:"Canada Large Cap XIU Dec. Contingent Income (F)",underlying:"Solactive Canada Large Cap (XIU) 5% Decrement Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.50,couponNote:"7.50% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"NBC31678"},
+  {issuer:"NBC",name:"Canada Select Large Cap II 62 AR Contingent Income (F)",underlying:"Solactive Canada Select Large Capitalizations II 62 AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.78,couponNote:"6.78% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31745"},
+  {issuer:"NBC",name:"Canada Select Large Cap II 62 AR Contingent Income (A)",underlying:"Solactive Canada Select Large Capitalizations II 62 AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.76,couponNote:"5.76% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31704"},
+  {issuer:"NBC",name:"Canada Telecom 145 AR Contingent Income (F)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"Contingent Coupon",coupon:7.50,couponNote:"7.50% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"NBC31737"},
+  {issuer:"NBC",name:"Canada Telecom 145 AR Contingent Income (A)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"Contingent Coupon",coupon:7.02,couponNote:"7.02% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31722"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Contingent Income (F)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.50,couponNote:"7.50% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31726"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Contingent Income (A) -30%",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:5.82,couponNote:"5.82% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31700"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Contingent Income (A) -25%",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.24,couponNote:"6.24% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31725"},
+  {issuer:"NBC",name:"EW Canada Banks 5% AR Contingent Income (A) -20%",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.02,couponNote:"7.02% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31698"},
+  {issuer:"NBC",name:"US 500 CAD Hedged 3% Dec. Contingent Income (F) -30%",underlying:"Solactive GBS US 500 Hedged to CAD Index 3% Decrement",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:7.50,couponNote:"7.50% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31728"},
+  {issuer:"NBC",name:"US 500 CAD Hedged 3% Dec. Contingent Income (F) -35%",underlying:"Solactive GBS US 500 Hedged to CAD Index 3% Decrement",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:7.02,couponNote:"7.02% contingent monthly",barrier:35,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"NBC31690"},
+  {issuer:"NBC",name:"Gold Miners CAD Hedged 3% Dec. Contingent Income (F)",underlying:"Solactive Gold Miners Hedged to CAD Index 3% Decrement",theme:"Sector",sector:"Gold Miners",struct:"Contingent Coupon",coupon:13.56,couponNote:"13.56% contingent monthly",barrier:30,term:"5yr",cls:"F",ccy:"CAD",status:"Closed",fs:"NBC31695"},
+  {issuer:"NBC",name:"Gold Miners CAD Hedged 3% Dec. Contingent Income (A) -30%",underlying:"Solactive Gold Miners Hedged to CAD Index 3% Decrement",theme:"Sector",sector:"Gold Miners",struct:"Contingent Coupon",coupon:10.50,couponNote:"10.50% contingent monthly",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31703"},
+  {issuer:"NBC",name:"Gold Miners CAD Hedged 3% Dec. Contingent Income (A) -50%",underlying:"Solactive Gold Miners Hedged to CAD Index 3% Decrement",theme:"Sector",sector:"Gold Miners",struct:"Contingent Coupon",coupon:7.02,couponNote:"7.02% contingent monthly",barrier:50,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31738"},
+  {issuer:"NBC",name:"US 2000 CAD Hedged 3% Dec. Contingent Income (F)",underlying:"Solactive US 2000 Hedged to CAD Index 3% Decrement",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:9.48,couponNote:"9.48% contingent monthly",barrier:25,term:"5yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"NBC31747"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (F) -30%",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.28,couponNote:"11.28% contingent monthly",barrier:30,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31711"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (F) -25%",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.04,couponNote:"11.04% contingent monthly",barrier:25,term:"5yr",cls:"F",ccy:"CAD",status:"Closed",fs:"NBC31662"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (F) buffer",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:7.86,couponNote:"7.86% geared buffer",barrier:40,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31736"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (A) -25%",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:9.00,couponNote:"9.00% contingent monthly",barrier:25,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31727"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (A) -30%",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:8.64,couponNote:"8.64% contingent monthly",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31735"},
+  {issuer:"NBC",name:"US Big Banks CAD 3.25% AR Contingent Income (A) -20%",underlying:"Solactive US Big Banks Hedged to CAD Index 3.25% AR",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:10.50,couponNote:"10.50% contingent monthly",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"NBC31688"},
+  {issuer:"NBC",name:"US Energy (XOP) Contingent Income (F)",underlying:"Solactive US Energy (XOP) Hedged to CAD Index Decrement 3%",theme:"Sector",sector:"US Energy",struct:"Contingent Coupon",coupon:9.54,couponNote:"9.54% contingent monthly",barrier:40,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"NBC31732"},
+  {issuer:"NBC",name:"Canada Large Cap XIU Dec. AutoCallable Flex GIC",underlying:"Solactive Canada Large Cap (XIU) 5% Decrement Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"AutoCall GIC 5.20%/yr",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"NBC32271"},
+  {issuer:"NBC",name:"Canadian Large Cap (AR) Flex GIC Ser.97 (F)",underlying:"Solactive Canada Select Large Capitalizations II 62 AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"135% participation GIC",barrier:0,term:"5.5yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"NBC32272"},
+  {issuer:"NBC",name:"Canadian Banks 5% AR Flex GIC Ser.49",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"135% participation GIC",barrier:0,term:"5.8yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"NBC32269"},
+  {issuer:"RBC",name:"US Power Grid Basket 11.37% Ser.3569",underlying:"GEV, NRG, VST, CEG (Power Grid Basket)",theme:"Sector",sector:"Power Grid",struct:"Contingent Coupon",coupon:11.37,couponNote:"11.37% contingent monthly",barrier:30,term:"3yr",cls:"A",ccy:"USD",status:"Active",fs:"RBC14857"},
+  {issuer:"RBC",name:"US Power Grid Basket 14.01% Ser.3570 (F)",underlying:"GEV, NRG, VST, CEG (Power Grid Basket)",theme:"Sector",sector:"Power Grid",struct:"Contingent Coupon",coupon:14.01,couponNote:"14.01% contingent monthly",barrier:30,term:"3yr",cls:"F",ccy:"USD",status:"Active",fs:"RBC14858"},
+  {issuer:"RBC",name:"Canada Bank 70 AR Contingent Yield step-down Ser.3563",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.56,couponNote:"7.56% y1-2 then 4.50%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Closed",fs:"RBC14840"},
+  {issuer:"RBC",name:"Canada Bank 70 AR Contingent Yield step-down Ser.3564 (F)",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:9.00,couponNote:"9.00% y1-2 then 4.50%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"RBC14841"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Contingent Yield 6.36% Ser.3578",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.36,couponNote:"6.36% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14878"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Contingent Yield 7.41% Ser.3579 (F)",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.41,couponNote:"7.41% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14879"},
+  {issuer:"RBC",name:"Canada Energy Select 75 AR Contingent Yield 9.51% Ser.3614",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:9.51,couponNote:"9.51% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14930"},
+  {issuer:"RBC",name:"Canada Energy Select 75 AR Contingent Yield 11.19% Ser.3615 (F)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:11.19,couponNote:"11.19% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14931"},
+  {issuer:"RBC",name:"Canada Energy Select 75 AR Contingent Yield 11.91% Ser.3670 (F)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:11.91,couponNote:"11.91% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"RBC15037"},
+  {issuer:"RBC",name:"Canada Energy Select 75 AR Contingent Yield 9.96% Ser.3669",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:9.96,couponNote:"9.96% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"RBC15036"},
+  {issuer:"RBC",name:"Canada Pipelines AR 115 Contingent Yield 8.94% Ser.3668 (F)",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Contingent Coupon",coupon:8.94,couponNote:"9.15% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"RBC15035"},
+  {issuer:"RBC",name:"Canada Pipelines AR 115 Contingent Yield 7.26% Ser.3667",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Contingent Coupon",coupon:7.26,couponNote:"8.01% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"RBC15034"},
+  {issuer:"RBC",name:"EW Canada Bank 30 AR Contingent Yield 6.12% Ser.3612",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.12,couponNote:"6.12% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14928"},
+  {issuer:"RBC",name:"EW Canada Bank 30 AR Contingent Yield 7.50% Ser.3613 (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.50,couponNote:"7.50% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14929"},
+  {issuer:"RBC",name:"EW US Asset Manager AR 200 13.74% Ser.3601",underlying:"Solactive Equal Weight US Asset Manager Hedged AR 200 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:13.74,couponNote:"13.74% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14913"},
+  {issuer:"RBC",name:"EW US Asset Manager AR 200 16.71% Ser.3602 (F)",underlying:"Solactive Equal Weight US Asset Manager Hedged AR 200 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:16.71,couponNote:"16.71% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14914"},
+  {issuer:"RBC",name:"EW US Asset Manager AR 200 13.68% Ser.3599",underlying:"Solactive Equal Weight US Asset Manager Hedged AR 200 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:13.68,couponNote:"13.68% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14911"},
+  {issuer:"RBC",name:"EW US Asset Manager AR 200 15.60% Ser.3600 (F)",underlying:"Solactive Equal Weight US Asset Manager Hedged AR 200 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:15.60,couponNote:"15.60% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14912"},
+  {issuer:"RBC",name:"EW US Blue Chip Select II CAD Hedged AR 370 7.83% Ser.3582",underlying:"Solactive Equal Weight US Blue Chip Select II CAD Hedged AR 370 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:7.83,couponNote:"7.83% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14882"},
+  {issuer:"RBC",name:"EW US Blue Chip Select II CAD Hedged AR 370 9.63% Ser.3583 (F)",underlying:"Solactive Equal Weight US Blue Chip Select II CAD Hedged AR 370 Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:9.63,couponNote:"9.63% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14883"},
+  {issuer:"RBC",name:"EW US Semiconductor Select AR 10.62% Ser.3632",underlying:"Solactive Equal Weight US Semi Conductor Select AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:10.62,couponNote:"10.62% contingent monthly",barrier:40,term:"5yr",cls:"A",ccy:"USD",status:"Active",fs:"RBC14960"},
+  {issuer:"RBC",name:"EW US Semiconductor Select AR 12.30% Ser.3633 (F)",underlying:"Solactive Equal Weight US Semi Conductor Select AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:12.30,couponNote:"12.30% contingent monthly",barrier:40,term:"5yr",cls:"F",ccy:"USD",status:"Active",fs:"RBC14961"},
+  {issuer:"RBC",name:"EW US Semiconductor CAD Hedged 2% AR 10.08% Ser.3616",underlying:"Solactive Equal Weight US Semi Conductor Select CAD Hedged 2% AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:10.08,couponNote:"10.08% contingent monthly",barrier:40,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14932"},
+  {issuer:"RBC",name:"EW US Semiconductor CAD Hedged 2% AR 11.73% Ser.3617 (F)",underlying:"Solactive Equal Weight US Semi Conductor Select CAD Hedged 2% AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:11.73,couponNote:"11.73% contingent monthly",barrier:40,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14933"},
+  {issuer:"RBC",name:"EW US Semiconductor CAD Hedged 2% AR 14.94% Ser.3654 (F)",underlying:"Solactive Equal Weight US Semi Conductor Select CAD Hedged 2% AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:14.94,couponNote:"14.94% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"RBC15007"},
+  {issuer:"RBC",name:"EW US Semiconductor CAD Hedged 2% AR 12.90% Ser.3653",underlying:"Solactive Equal Weight US Semi Conductor Select CAD Hedged 2% AR Index",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:12.90,couponNote:"12.90% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"RBC15006"},
+  {issuer:"RBC",name:"Gold Miners CAD Hedged 3% Dec. 11.22% Ser.3559",underlying:"Solactive Gold Miners CAD Hedged 3% AR Index",theme:"Sector",sector:"Gold Miners",struct:"Contingent Coupon",coupon:11.22,couponNote:"11.22% contingent monthly",barrier:35,term:"5yr",cls:"A",ccy:"CAD",status:"Closed",fs:"RBC14829"},
+  {issuer:"RBC",name:"Gold Miners CAD Hedged 3% Dec. 14.25% Ser.3560 (F)",underlying:"Solactive Gold Miners CAD Hedged 3% AR Index",theme:"Sector",sector:"Gold Miners",struct:"Contingent Coupon",coupon:14.25,couponNote:"14.25% contingent monthly",barrier:35,term:"5yr",cls:"F",ccy:"CAD",status:"Closed",fs:"RBC14830"},
+  {issuer:"RBC",name:"US Energy EW Select 10 CAD 87 AR 10.83% Ser.3580",underlying:"Solactive US Energy Select 10 AR 87 Hedged to CAD Index",theme:"Sector",sector:"US Energy",struct:"Contingent Coupon",coupon:10.83,couponNote:"10.83% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14880"},
+  {issuer:"RBC",name:"US Energy EW Select 10 CAD 87 AR 12.66% Ser.3581 (F)",underlying:"Solactive US Energy Select 10 AR 87 Hedged to CAD Index",theme:"Sector",sector:"US Energy",struct:"Contingent Coupon",coupon:12.66,couponNote:"12.66% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14881"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Fixed Yield 5.31% Ser.57",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.31,couponNote:"5.31% guaranteed fixed",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14864"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Fixed Yield 5.70% Ser.58 (F)",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.70,couponNote:"5.70% guaranteed fixed",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14865"},
+  {issuer:"RBC",name:"Canada Bank 70 AR Autocallable Ser.940",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:12.15,couponNote:"12.15%/yr up to 42.15%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14962"},
+  {issuer:"RBC",name:"Canada Bank 70 AR Autocallable Ser.941 (F)",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:15.35,couponNote:"15.35%/yr up to 45.35%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14963"},
+  {issuer:"RBC",name:"Canada Blue Chip II AR Autocallable Ser.942",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:10.45,couponNote:"10.45%/yr up to 40.45%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14964"},
+  {issuer:"RBC",name:"Canada Blue Chip II AR Autocallable Ser.943 (F)",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:13.65,couponNote:"13.65%/yr up to 43.65%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14965"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Autocallable Ser.936",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:15.15,couponNote:"15.15%/yr up to 42.15%",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14909"},
+  {issuer:"RBC",name:"Canada Blue Chip III AR Autocallable Ser.937 (F)",underlying:"Solactive Canada Blue Chip III AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:18.45,couponNote:"18.45%/yr up to 45.45%",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14910"},
+  {issuer:"RBC",name:"PP Canada Blue Chip II AR LEOS Ser.14",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"145% participation PPN",barrier:0,term:"5.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14860"},
+  {issuer:"RBC",name:"PP Canada Blue Chip II AR LEOS Ser.16",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"102% participation PPN",barrier:0,term:"3.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14966"},
+  {issuer:"RBC",name:"PP Canada Blue Chip II AR LEOS Ser.17 (F)",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"130% participation PPN",barrier:0,term:"3.5yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14967"},
+  {issuer:"RBC",name:"PP Canada Utilities 5% AR LEOS Ser.9",underlying:"Solactive Canada Utilities 5% AR Index",theme:"Sector",sector:"Utilities",struct:"PPN / GIC",coupon:0,couponNote:"100% participation PPN",barrier:0,term:"3.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14847"},
+  {issuer:"RBC",name:"PP Canada Utilities 5% AR LEOS Ser.10 (F)",underlying:"Solactive Canada Utilities 5% AR Index",theme:"Sector",sector:"Utilities",struct:"PPN / GIC",coupon:0,couponNote:"150% participation PPN",barrier:0,term:"3.5yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14848"},
+  {issuer:"RBC",name:"PP ETF Linked Basket LEOS Ser.10",underlying:"XRE, RING, SAFE, ZEB, PPLN",theme:"Multi-Asset / Basket PPN",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"148% participation PPN",barrier:0,term:"5.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"RBC14862"},
+  {issuer:"RBC",name:"PP ETF Linked Basket LEOS Ser.11 (F)",underlying:"XRE, RING, SAFE, ZEB, PPLN",theme:"Multi-Asset / Basket PPN",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"177% participation PPN",barrier:0,term:"5.5yr",cls:"F",ccy:"CAD",status:"Active",fs:"RBC14863"},
+  {issuer:"RBC",name:"PP Canada Index EW Basket LEOS Ser.38",underlying:"SLF, BCE, T, ENB, BNS (equal weight AR)",theme:"Multi-Asset / Basket PPN",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"228% participation PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"RBC14985"},
+  {issuer:"RBC",name:"PP Canada Blue Chip II AR Autocallable LEOS Ser.244",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:5.45,couponNote:"5.45%/yr autocall PPN",barrier:0,term:"10yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"RBC15038"},
+  {issuer:"RBC",name:"PP Canada Blue Chip II AR Autocallable LEOS Ser.245 (F)",underlying:"Solactive Canada Blue Chip II AR Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:8.95,couponNote:"8.95%/yr autocall PPN",barrier:0,term:"10yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"RBC15039"},
+  {issuer:"BNS",name:"Canadian Insurance Basket Autocallable Ser.150",underlying:"Manulife, Power Corp, Sun Life, Great-West Lifeco",theme:"Sector",sector:"Insurance",struct:"Autocallable",coupon:9.50,couponNote:"9.50%/yr cumulative",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7504"},
+  {issuer:"BNS",name:"Canadian Insurance Basket Autocallable Ser.151F (F)",underlying:"Manulife, Power Corp, Sun Life, Great-West Lifeco",theme:"Sector",sector:"Insurance",struct:"Autocallable",coupon:11.75,couponNote:"11.75%/yr cumulative",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7564"},
+  {issuer:"BNS",name:"Canadian Banks Basket Autocallable Ser.541",underlying:"BMO, CIBC, RBC, BNS, TD",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:7.75,couponNote:"7.75%/yr cumulative",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7505"},
+  {issuer:"BNS",name:"Canadian Banks Basket Autocallable Ser.542F (F)",underlying:"BMO, CIBC, RBC, BNS, TD",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7561"},
+  {issuer:"BNS",name:"Semiconductor Basket Autocallable Ser.7",underlying:"AMD, NVIDIA, Micron, Broadcom",theme:"Sector",sector:"Semiconductors",struct:"Autocallable",coupon:23.00,couponNote:"23%/yr step-up",barrier:25,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7513"},
+  {issuer:"BNS",name:"Canadian Energy (AR) Index Autocallable Ser.57",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Autocallable",coupon:11.85,couponNote:"11.85%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7543"},
+  {issuer:"BNS",name:"Canadian Energy (AR) Index Autocallable Ser.58F (F)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Autocallable",coupon:14.50,couponNote:"14.50%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7544"},
+  {issuer:"BNS",name:"Healthcare (AR) Index Autocallable Ser.39",underlying:"Solactive US Select Healthcare Hedged to CAD 43 AR Index",theme:"Sector",sector:"Healthcare",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7456"},
+  {issuer:"BNS",name:"Healthcare (AR) Index Autocallable Ser.41",underlying:"Solactive US Select Healthcare Hedged to CAD 43 AR Index",theme:"Sector",sector:"Healthcare",struct:"Autocallable",coupon:11.00,couponNote:"11.00%/yr cumulative",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Autocallable Ser.543F (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.25,couponNote:"10.25%/yr cumulative",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Ser.65",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Autocallable",coupon:5.75,couponNote:"5.75%/yr + 100% participation if called",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7466"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Ser.66F (F)",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Autocallable",coupon:8.25,couponNote:"8.25%/yr + 100% participation if called",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7467"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Ser.67F (F/USD)",underlying:"Morningstar US Large Cap Dividend Select AR 50 GR USD",theme:"US Large Cap / Broad",sector:"",struct:"Autocallable",coupon:12.00,couponNote:"12.00%/yr cumulative USD",barrier:20,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7477"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Ser.68",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Autocallable",coupon:11.00,couponNote:"11.00%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Ser.69F (F)",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Autocallable",coupon:13.50,couponNote:"13.50%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Emerging Markets (AR) Index Autocallable Ser.2",underlying:"Solactive EEM Daily CAD Hedged 30 AR Index",theme:"Global / European / EM",sector:"",struct:"Autocallable",coupon:10.50,couponNote:"10.50%/yr cumulative",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7492"},
+  {issuer:"BNS",name:"Emerging Markets (AR) Index Autocallable Ser.1F (F)",underlying:"Solactive EEM Daily CAD Hedged 30 AR Index",theme:"Global / European / EM",sector:"",struct:"Autocallable",coupon:13.00,couponNote:"13.00%/yr cumulative",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7491"},
+  {issuer:"BNS",name:"Canadian Utilities (AR) Index Autocallable Ser.58F (F)",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Autocallable",coupon:9.50,couponNote:"9.50%/yr cumulative",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7484"},
+  {issuer:"BNS",name:"Canadian Utilities (AR) Index Autocallable Ser.60",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Autocallable",coupon:7.00,couponNote:"7.00%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Autocallable Ser.56",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:8.00,couponNote:"8.00%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7526"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Autocallable Ser.57F (F)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7527"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Autocallable Ser.58F (F)",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:13.50,couponNote:"13.50%/yr cumulative",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Pipelines (AR) Index Autocallable Ser.126",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Autocallable",coupon:8.00,couponNote:"8.00%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Pipelines (AR) Index Autocallable Ser.127F (F)",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"EURO STOXX 50 Autocallable Ser.141F (F/USD)",underlying:"EURO STOXX 50 Index",theme:"Global / European / EM",sector:"",struct:"Autocallable",coupon:10.25,couponNote:"10.25%/yr cumulative USD",barrier:30,term:"5yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7520"},
+  {issuer:"BNS",name:"Critical Minerals Basket Autocallable Ser.4",underlying:"Albemarle, Freeport-McMoRan, Rio Tinto, Vale",theme:"Sector",sector:"Critical Minerals",struct:"Autocallable",coupon:20.00,couponNote:"20%/yr step-up",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"North American Index Basket Autocallable Ser.3",underlying:"Scotiabank US Top 50 + Canada Top 30",theme:"Multi-Asset / Basket PPN",sector:"",struct:"Autocallable",coupon:11.50,couponNote:"11.50%/yr step-up",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Banks Basket Autocallable Ser.86F (F/USD)",underlying:"Citigroup, Morgan Stanley, Goldman Sachs, Wells Fargo",theme:"US Banks",sector:"",struct:"Autocallable",coupon:15.00,couponNote:"15.00%/yr cumulative USD",barrier:25,term:"5yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7532"},
+  {issuer:"BNS",name:"EURO STOXX Banks Contingent Coupon Ser.31",underlying:"EURO STOXX Banks Index",theme:"Global / European / EM",sector:"",struct:"Contingent Coupon",coupon:10.80,couponNote:"$10.80 contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Banks Basket Contingent Coupon Ser.236F (F/USD)",underlying:"Bank of America, Citigroup, Morgan Stanley, Wells Fargo",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.76,couponNote:"$11.76 contingent monthly",barrier:30,term:"5yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7542"},
+  {issuer:"BNS",name:"U.S. Banks (AR) Index Contingent Coupon Ser.238",underlying:"Solactive US Big Banks Hedged to CAD 50 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:8.88,couponNote:"$8.88 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Banks (AR) Index Contingent Coupon Ser.239F (F)",underlying:"Solactive US Big Banks Hedged to CAD 50 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:10.92,couponNote:"$10.92 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Semiconductor Basket Contingent Coupon Ser.37",underlying:"AMD, NVIDIA, Micron, Broadcom",theme:"Sector",sector:"Semiconductors",struct:"Contingent Coupon",coupon:12.00,couponNote:"$12.00 contingent monthly",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7525"},
+  {issuer:"BNS",name:"EURO STOXX Banks Contingent Coupon Ser.30",underlying:"EURO STOXX Banks Index",theme:"Global / European / EM",sector:"",struct:"Contingent Coupon",coupon:8.70,couponNote:"$8.70 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7507"},
+  {issuer:"BNS",name:"U.S. Asset Management Basket Contingent Coupon Ser.6F (F/USD)",underlying:"Apollo, Blackstone, Carlyle, KKR",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:13.20,couponNote:"$13.20 contingent monthly USD",barrier:40,term:"5yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7478"},
+  {issuer:"BNS",name:"Cyber Security Basket Contingent Coupon Ser.12F (F)",underlying:"CrowdStrike, Zscaler, Cloudflare, Palo Alto Networks",theme:"Sector",sector:"Cyber Security",struct:"Contingent Coupon",coupon:11.22,couponNote:"$11.22 contingent monthly",barrier:40,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7465"},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Contingent Coupon Ser.889",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.15,couponNote:"$6.15 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7516"},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Contingent Coupon Ser.891F (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.20,couponNote:"$7.20 contingent monthly",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7540"},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Contingent Coupon Ser.892F (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.50,couponNote:"$7.50 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7559"},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Contingent Coupon Ser.895F (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"$7.44 contingent monthly",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Energy (AR) Index Contingent Coupon Ser.44",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:8.52,couponNote:"$8.52 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7546"},
+  {issuer:"BNS",name:"Canadian Energy (AR) Index Contingent Coupon Ser.43F (F)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:10.20,couponNote:"$10.20 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7545"},
+  {issuer:"BNS",name:"Canadian Utilities (AR) Index Contingent Coupon Ser.316",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:5.76,couponNote:"$5.76 contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Utilities (AR) Index Contingent Coupon Ser.317F (F)",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:6.84,couponNote:"$6.84 contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Telecom (AR) Index Contingent Coupon Ser.63F (F)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"Contingent Coupon",coupon:7.20,couponNote:"$7.20 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7474"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.117F (F)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.56,couponNote:"$7.56 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7458"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.123F (F)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.32,couponNote:"$7.32 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7529"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.120",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.06,couponNote:"$6.06 contingent monthly",barrier:35,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7485"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.122",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.12,couponNote:"$6.12 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7528"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.125F (F/USD)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:8.01,couponNote:"$8.01 contingent monthly USD",barrier:30,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7534"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.128",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.36,couponNote:"$6.36 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Contingent Coupon Ser.129F (F)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"$7.44 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Pipelines (AR) Index Contingent Coupon Ser.163",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Contingent Coupon",coupon:6.00,couponNote:"$6.00 contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7489"},
+  {issuer:"BNS",name:"Canadian Pipelines (AR) Index Contingent Coupon Ser.165F (F)",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"Contingent Coupon",coupon:7.08,couponNote:"$7.08 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Contingent Coupon Ser.110",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:7.02,couponNote:"$7.02 contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7519"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Contingent Coupon Ser.108 (USD)",underlying:"Morningstar US Large Cap Dividend Select AR 50 GR USD",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:7.05,couponNote:"$7.05 contingent monthly USD",barrier:30,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"SSP7493"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Contingent Coupon Ser.109F (F/USD)",underlying:"Morningstar US Large Cap Dividend Select AR 50 GR USD",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:8.70,couponNote:"$8.70 contingent monthly USD",barrier:30,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"SSP7494"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Contingent Coupon Ser.113F (F)",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"Contingent Coupon",coupon:7.80,couponNote:"$7.80 contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Emerging Markets (AR) Index Contingent Coupon Ser.4F (F)",underlying:"Solactive EEM Daily CAD Hedged 30 AR Index",theme:"Global / European / EM",sector:"",struct:"Contingent Coupon",coupon:10.70,couponNote:"$10.70 contingent semi-annual",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Deposit Ser.194F (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation PPN",barrier:0,term:"3yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7554"},
+  {issuer:"BNS",name:"Canadian Banks (AR) Index Deposit Ser.195",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation PPN",barrier:0,term:"4.5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Deposit Ser.67",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"135% participation PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7531"},
+  {issuer:"BNS",name:"Canada Large Cap (AR) Index Deposit Ser.68F (F)",underlying:"Scotiabank Canada Top 30 Large Cap Dividend Index 135 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"115% participation PPN",barrier:0,term:"3yr",cls:"F",ccy:"CAD",status:"Active",fs:"SSP7552"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Deposit Ser.41",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"110% participation PPN",barrier:0,term:"4yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7430"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Deposit Ser.42 (USD)",underlying:"Scotiabank US Top 50 Large Cap Dividend 75 AR Index",theme:"US Large Cap / Broad",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"120% participation PPN USD",barrier:0,term:"4yr",cls:"A",ccy:"USD",status:"Active",fs:"SSP7431"},
+  {issuer:"BNS",name:"U.S. Large Cap (AR) Index Autocallable Deposit Ser.15",underlying:"Scotiabank US Top 50 Large Cap Dividend Hedged to CAD Index AR",theme:"US Large Cap / Broad",sector:"",struct:"PPN / GIC",coupon:5.80,couponNote:"5.80%/yr autocall PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7537"},
+  {issuer:"BNS",name:"Canadian (AR) Index Basket Autocallable Deposit Ser.16",underlying:"Canada Pipelines AR + EW Bank 30 AR + Insurance 260 AR + Energy 75 AR",theme:"Multi-Asset / Basket PPN",sector:"",struct:"PPN / GIC",coupon:5.55,couponNote:"5.55%/yr autocall PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"SSP7510"},
+  {issuer:"BNS",name:"Canadian (AR) Index Basket Deposit Ser.9",underlying:"Canada Energy 75 + Pipelines AR 115 + Utilities 200 AR",theme:"Multi-Asset / Basket PPN",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"115% participation PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:""},
+  {issuer:"BMO",name:"Canada Energy Select 75 AR Autocallable (A)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Autocallable",coupon:11.65,couponNote:"11.65%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21455"},
+  {issuer:"BMO",name:"Canada Energy Select 75 AR Autocallable (F)",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Autocallable",coupon:13.70,couponNote:"13.70%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21456"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Autocallable (A)",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Autocallable",coupon:11.25,couponNote:"11.25%/yr cumulative",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21453"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Autocallable (F)",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Autocallable",coupon:13.25,couponNote:"13.25%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21454"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR Autocallable (A)",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Autocallable",coupon:10.25,couponNote:"10.25%/yr cumulative",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21477"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR Autocallable (F)",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Autocallable",coupon:12.45,couponNote:"12.45%/yr cumulative",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21478"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR OTM Autocallable (F)",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Autocallable",coupon:14.00,couponNote:"14.00%/yr at 105% call level",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21476"},
+  {issuer:"BMO",name:"US Energy EW Select 10 CAD Hedged 56 AR Autocallable (F)",underlying:"Solactive US Energy Equal Weight Select 10 Daily Hedged to CAD 56 AR Index",theme:"Sector",sector:"US Energy",struct:"Autocallable",coupon:16.30,couponNote:"16.30%/yr cumulative",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21479"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR OTM Autocallable (A)",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:10.50,couponNote:"10.50%/yr at 105% call level",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21429"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR OTM Autocallable (F)",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:12.50,couponNote:"12.50%/yr at 105% call level",barrier:20,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21418"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (A) buffer",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:4.80,couponNote:"4.80% contingent (geared buffer)",barrier:50,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21484"},
+  {issuer:"BMO",name:"Canada Energy Select 75 AR Contingent Coupon (F) -25%",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:10.89,couponNote:"10.89% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21481"},
+  {issuer:"BMO",name:"Canada Energy Select 75 AR Contingent Coupon (F) -30%",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:9.63,couponNote:"9.63% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21450"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR Contingent Coupon (A) -20%",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:7.23,couponNote:"7.23% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21452"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR Contingent Coupon (A) -25%",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.18,couponNote:"6.18% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21420"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR Contingent Coupon (A) -35%",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:5.28,couponNote:"5.28% contingent monthly",barrier:35,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21421"},
+  {issuer:"BMO",name:"Canada Select Large Cap III 162 AR Contingent Coupon (F) -20%",underlying:"Solactive Canada Select Large Cap III 162 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:8.58,couponNote:"8.58% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21422"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (A) -20%",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.87,couponNote:"6.87% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21427"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (A) -25%",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21482"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (A) -30%",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.21,couponNote:"6.21% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21483"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (F) -20%",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:9.54,couponNote:"9.54% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21451"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR Contingent Coupon (F) -25%",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.74,couponNote:"7.74% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"JHN21401"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Contingent Coupon (A) -20%",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.64,couponNote:"11.64% contingent monthly",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21480"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Contingent Coupon (A) -30%",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:9.09,couponNote:"9.09% contingent monthly",barrier:30,term:"5yr",cls:"A",ccy:"CAD",status:"Closed",fs:"JHN21398"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Contingent Coupon (F) -20%",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:15.18,couponNote:"15.18% contingent monthly",barrier:20,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21448"},
+  {issuer:"BMO",name:"EW US Major Bank CAD Hedged 104 AR Contingent Coupon (F) -30%",underlying:"Solactive Equal Weight US Major Bank Daily Hedged to CAD 104 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:11.25,couponNote:"11.25% contingent monthly",barrier:30,term:"5yr",cls:"F",ccy:"CAD",status:"Closed",fs:"JHN21399"},
+  {issuer:"BMO",name:"EW US Major Bank Select 33 AR Contingent Coupon (F/USD)",underlying:"Solactive Equal Weight US Major Bank Select 33 AR Index",theme:"US Banks",sector:"",struct:"Contingent Coupon",coupon:12.21,couponNote:"12.21% contingent monthly USD",barrier:25,term:"5yr",cls:"F",ccy:"USD",status:"Closed",fs:"JHN21402"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR Contingent Coupon (F) -25%",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:10.23,couponNote:"10.23% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21458"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR Contingent Coupon (F) -30%",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:9.42,couponNote:"9.42% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21459"},
+  {issuer:"BMO",name:"US Diversified EW Equity CAD Hedged 133 AR Contingent Coupon (A) -30%",underlying:"Solactive US Diversified EW Equity Daily CAD Hedged 133 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"7.44% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21457"},
+  {issuer:"BMO",name:"US Diversified EW Equity 30 AR Contingent Coupon (A/USD)",underlying:"Solactive US Diversified EW Equity 30 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:8.70,couponNote:"8.70% contingent monthly USD",barrier:25,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"JHN21460"},
+  {issuer:"BMO",name:"US Diversified EW Equity 30 AR Contingent Coupon (F/USD)",underlying:"Solactive US Diversified EW Equity 30 AR Index",theme:"US Equal Weight / Factor",sector:"",struct:"Contingent Coupon",coupon:10.95,couponNote:"10.95% contingent monthly USD",barrier:25,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"JHN21461"},
+  {issuer:"BMO",name:"US Energy EW Select 10 CAD Hedged 56 AR Contingent Coupon (A)",underlying:"Solactive US Energy Equal Weight Select 10 Daily Hedged to CAD 56 AR Index",theme:"Sector",sector:"US Energy",struct:"Contingent Coupon",coupon:10.56,couponNote:"10.56% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN21424"},
+  {issuer:"BMO",name:"US Energy EW Select 10 CAD Hedged 56 AR Contingent Coupon (F)",underlying:"Solactive US Energy Equal Weight Select 10 Daily Hedged to CAD 56 AR Index",theme:"Sector",sector:"US Energy",struct:"Contingent Coupon",coupon:12.87,couponNote:"12.87% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN21425"},
+  {issuer:"BMO",name:"Canada Select Large Cap II 333 AR PPN (A)",underlying:"Solactive Canada Select Large Cap II 333 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"75% participation PPN",barrier:0,term:"3.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN3968"},
+  {issuer:"BMO",name:"Canada Select Large Cap II 333 AR PPN (F)",underlying:"Solactive Canada Select Large Cap II 333 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"104% participation PPN",barrier:0,term:"3.5yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN3975"},
+  {issuer:"BMO",name:"Canada Telecom 145 AR PPN (A)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"PPN / GIC",coupon:0,couponNote:"155% participation PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"JHN3986"},
+  {issuer:"BMO",name:"Canada Telecom 145 AR PPN (F)",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"PPN / GIC",coupon:0,couponNote:"187% participation PPN",barrier:0,term:"5yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"JHN3985"},
+  {issuer:"BMO",name:"EFA Daily CAD Hedged 38 AR PPN (A/MSCI EAFE)",underlying:"Solactive EFA Daily CAD Hedged 38 AR Index (MSCI EAFE)",theme:"Global / European / EM",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"80% participation PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN3966"},
+  {issuer:"BMO",name:"EFA Daily CAD Hedged 38 AR PPN (F/MSCI EAFE)",underlying:"Solactive EFA Daily CAD Hedged 38 AR Index (MSCI EAFE)",theme:"Global / European / EM",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"95% participation PPN",barrier:0,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN3967"},
+  {issuer:"BMO",name:"EW Canada Banks 5% AR PPN Booster (A)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"21.5% boosted return PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN3973"},
+  {issuer:"BMO",name:"EW Canada Banks 5% AR PPN Booster (F)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"31.5% boosted return PPN",barrier:0,term:"5yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN3974"},
+  {issuer:"BMO",name:"Canada Select Large Cap II 333 AR AutoCallable PPN (A)",underlying:"Solactive Canada Select Large Cap II 333 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:5.05,couponNote:"5.05%/yr autocall PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN3964"},
+  {issuer:"BMO",name:"Canada Select Large Cap II 333 AR AutoCallable PPN (F)",underlying:"Solactive Canada Select Large Cap II 333 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:6.40,couponNote:"6.40%/yr autocall PPN",barrier:0,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN3965"},
+  {issuer:"BMO",name:"EW Canada Banks 5% AR AutoCallable PPN (A/USD)",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:7.10,couponNote:"7.10%/yr autocall PPN USD",barrier:0,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"JHN3977"},
+  {issuer:"BMO",name:"EW Canada Bank 30 AR AutoCallable PPN (F)",underlying:"Solactive Equal Weight Canada Bank 30 AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:5.90,couponNote:"5.90%/yr autocall PPN",barrier:0,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"JHN3963"},
+  {issuer:"BMO",name:"Canada Select Large Cap II 333 AR PPN Booster (A)",underlying:"Solactive Canada Select Large Cap II 333 Index AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"23.85% boosted return PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"JHN3976"},
+  {issuer:"TD",name:"Canada Bank 70 AR Autocallable Ser.930",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:10.00,couponNote:"10.00%/yr cumulative",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN6902"},
+  {issuer:"TD",name:"Canada Bank 70 AR Autocallable Ser.931F",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Autocallable",coupon:12.65,couponNote:"12.65%/yr cumulative",barrier:20,term:"5yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"TDN6903"},
+  {issuer:"TD",name:"Canadian Large Cap Diversified Equity 265 AR Autocallable Ser.929",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Autocallable",coupon:8.00,couponNote:"8.00%/yr cumulative",barrier:20,term:"5yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN6901"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3086",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.20,couponNote:"7.20% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN6882"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3087F",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:9.00,couponNote:"9.00% contingent monthly",barrier:20,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"TDN6883"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3082F -25%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:8.00,couponNote:"8.00% contingent monthly",barrier:25,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"TDN6878"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3088 -25%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.60,couponNote:"6.60% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN6884"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3083F -30%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"7.44% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"TDN6879"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon (USD) Ser.3106F -30%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:8.70,couponNote:"8.70% contingent monthly USD",barrier:30,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"TDN6900"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3080F -40%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.60,couponNote:"6.60% contingent monthly",barrier:40,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"TDN6876"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon (USD) Ser.3089 -30%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.44,couponNote:"7.44% contingent monthly USD",barrier:30,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"TDN6885"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon (USD) Ser.3092 -35%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:7.00,couponNote:"7.00% contingent monthly USD",barrier:35,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"TDN6888"},
+  {issuer:"TD",name:"Canada Bank 70 AR Contingent Coupon Ser.3081 -30%",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Closed",fs:"TDN6877"},
+  {issuer:"TD",name:"Canada Bank 70 AR Memory Coupon Ser.232",underlying:"Solactive Canada Bank 70 AR Index",theme:"Canadian Banks",sector:"",struct:"Contingent Coupon",coupon:6.80,couponNote:"6.80% memory coupon semi-annual",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN6886"},
+  {issuer:"TD",name:"Canada Energy Select 75 AR Contingent Coupon Ser.3107F -30%",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:10.14,couponNote:"10.14% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"TDN6906"},
+  {issuer:"TD",name:"Canada Energy Select 75 AR Contingent Coupon Ser.3108 -20%",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:11.04,couponNote:"11.04% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN6905"},
+  {issuer:"TD",name:"Canada Energy Select 75 AR Contingent Coupon Ser.3109 -25%",underlying:"Solactive Canada Energy Select 75 AR Index",theme:"Canadian Energy",sector:"",struct:"Contingent Coupon",coupon:9.60,couponNote:"9.60% contingent monthly",barrier:25,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN6904"},
+  {issuer:"TD",name:"Canada Insurance 220 AR Contingent Coupon Ser.3077",underlying:"Solactive Canada Insurance 220 AR Index",theme:"Sector",sector:"Insurance",struct:"Contingent Coupon",coupon:7.25,couponNote:"7.25% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Closed",fs:"TDN6872"},
+  {issuer:"TD",name:"Canada Utilities 200 AR Contingent Coupon Ser.3098 -20%",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:6.30,couponNote:"6.30% contingent monthly",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN6891"},
+  {issuer:"TD",name:"Canada Utilities 200 AR Contingent Coupon (USD) Ser.3100 -25%",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:6.60,couponNote:"6.60% contingent monthly USD",barrier:25,term:"7yr",cls:"A",ccy:"USD",status:"Active",fs:"TDN6893"},
+  {issuer:"TD",name:"Canada Utilities 200 AR Contingent Coupon Ser.3064F -30%",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Closed",fs:"TDN6862"},
+  {issuer:"TD",name:"Canada Utilities 200 AR Contingent Coupon Ser.3099F -30%",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:6.60,couponNote:"6.60% contingent monthly",barrier:30,term:"7yr",cls:"F",ccy:"CAD",status:"Active",fs:"TDN6892"},
+  {issuer:"TD",name:"Canada Utilities 200 AR Contingent Coupon (USD) Ser.3097F -30%",underlying:"Solactive Canada Utilities 200 AR Index",theme:"Sector",sector:"Utilities",struct:"Contingent Coupon",coupon:7.31,couponNote:"7.31% contingent monthly USD",barrier:30,term:"7yr",cls:"F",ccy:"USD",status:"Active",fs:"TDN6894"},
+  {issuer:"TD",name:"Canadian Large Cap Diversified Equity 265 AR Contingent Coupon Ser.3110",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.00,couponNote:"6.00% contingent monthly",barrier:30,term:"7yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN6907"},
+  {issuer:"TD",name:"Canadian Large Cap Diversified Equity 265 AR Memory Coupon Ser.233",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"Contingent Coupon",coupon:6.53,couponNote:"6.53% memory coupon semi-annual",barrier:20,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN6887"},
+  {issuer:"TD",name:"Canada Pipelines AR 115 Autocallable PPN Ser.187F",underlying:"Solactive Canada Pipelines AR 115 Index",theme:"Sector",sector:"Pipelines",struct:"PPN / GIC",coupon:5.50,couponNote:"5.50%/yr autocall PPN",barrier:0,term:"7yr",cls:"F",ccy:"CAD",status:"Coming Soon",fs:"TDN8749"},
+  {issuer:"TD",name:"XSP ETF-Linked Growth Notes Ser.934",underlying:"iShares Core S&P 500 Index ETF CAD-Hedged (XSP)",theme:"US Large Cap / Broad",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation PPN",barrier:0,term:"5.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8747"},
+  {issuer:"TD",name:"Canadian Equity Index Maximum Return Ser.210",underlying:"S&P/TSX 60 Index",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation, 35% max PPN",barrier:0,term:"5.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8746"},
+  {issuer:"TD",name:"Canada Telecom 145 AR Growth Notes Ser.937",underlying:"Solactive Canada Telecommunications 145 AR Index",theme:"Sector",sector:"Telecom",struct:"PPN / GIC",coupon:0,couponNote:"160% participation PPN",barrier:0,term:"5.75yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN8751"},
+  {issuer:"TD",name:"Canada Utilities 5% AR Growth Notes Ser.932",underlying:"Solactive Canada Utilities 5% AR Index",theme:"Sector",sector:"Utilities",struct:"PPN / GIC",coupon:0,couponNote:"143% participation PPN",barrier:0,term:"5yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8742"},
+  {issuer:"TD",name:"Canada Utilities 5% AR Growth Notes Ser.933",underlying:"Solactive Canada Utilities 5% AR Index",theme:"Sector",sector:"Utilities",struct:"PPN / GIC",coupon:0,couponNote:"100% participation PPN 3yr",barrier:0,term:"3yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8743"},
+  {issuer:"TD",name:"Canadian Large Cap Diversified Equity 265 AR Growth Ser.936",underlying:"Solactive Canadian Large Cap Diversified Equity Index 265 AR",theme:"Canadian Equity (Broad)",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"112% participation PPN",barrier:0,term:"5.75yr",cls:"A",ccy:"CAD",status:"Coming Soon",fs:"TDN8750"},
+  {issuer:"TD",name:"Canada Banks 5% AR Growth Notes Ser.935",underlying:"Solactive Equal Weight Canada Banks 5% AR Index",theme:"Canadian Banks",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"160% participation PPN",barrier:0,term:"7yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8748"},
+  {issuer:"TD",name:"Equities-Linked Maximum Return Ser.211 (SX5E+XSP)",underlying:"EURO STOXX 50 + iShares S&P 500 ETF CAD Hedged",theme:"Global / European / EM",sector:"",struct:"PPN / GIC",coupon:0,couponNote:"100% participation, 36% max PPN",barrier:0,term:"5.5yr",cls:"A",ccy:"CAD",status:"Active",fs:"TDN8745"}
 ];
-document.getElementById('tb').textContent=D.length+' notes';
-const ucL={'cdn-eq':'Cdn Equity (Broad)','cdn-bank':'Canadian Banks','cdn-energy':'Canadian Energy','cdn-other':'Cdn Other (Tel/Util/Ins/Pipe)','us-bank':'US Banks','us-energy':'US Energy / Miners','us-lc':'US Large Cap / Broad','global':'Global / European / EM','single':'Single Name'};
-const ucC={'cdn-eq':'uc-cdn-eq','cdn-bank':'uc-cdn-bank','cdn-energy':'uc-cdn-energy','cdn-other':'uc-cdn-other','us-bank':'uc-us-bank','us-energy':'uc-us-energy','us-lc':'uc-us-lc','global':'uc-global','single':'uc-single'};
-let sc='issuer',sd=1;
-function bc(b){if(b>=0)return'';if(b>=-20)return'b-tight';if(b>=-30)return'b-mid';return'b-wide';}
-function render(){
-  const fi=document.getElementById('fi').value,fc=document.getElementById('fc').value,ft=document.getElementById('ft').value,fuc=document.getElementById('fuc').value,fb=document.getElementById('fb').value,fcp=document.getElementById('fcp').value,fcu=document.getElementById('fcu').value,fs=document.getElementById('fs').value,ftr=document.getElementById('ftr').value;
-  let data=D.filter(n=>{
-    if(fi&&n.issuer!==fi)return false;
-    if(fc==='F'&&n.cls!=='F')return false;
-    if(fc==='A'&&n.cls!=='A')return false;
-    if(ft&&n.structure!==ft)return false;
-    if(fuc&&n.ucat!==fuc)return false;
-    if(fb!==''){const t=parseFloat(fb);if(!n.pp&&n.barrier>t)return false;}
-    if(fcp!==''&&(n.coupon===null||n.coupon<parseFloat(fcp)))return false;
-    if(fcu&&n.currency!==fcu)return false;
-    if(fs&&n.status!==fs)return false;
-    if(ftr){const t=parseInt(ftr);if(t===2&&n.term>2)return false;if(t===5&&n.term!==5)return false;if(t===7&&n.term!==7)return false;}
-    return true;
-  });
-  data.sort((a,b)=>{let av=a[sc],bv=b[sc];if(av===null)av=-999;if(bv===null)bv=-999;if(typeof av==='string')return sd*av.localeCompare(bv);return sd*(av-bv);});
-  const tbody=document.getElementById('tbody');tbody.innerHTML='';
-  const counts={};data.forEach(n=>counts[n.issuer]=(counts[n.issuer]||0)+1);
-  document.getElementById('cl').textContent=data.length===D.length?'Showing all '+D.length+' notes':'Showing '+data.length+' of '+D.length+' notes';
-  document.getElementById('c2').textContent=Object.entries(counts).map(([k,v])=>v+' '+k).join(' \u00b7 ');
-  if(!data.length){document.getElementById('empty').style.display='block';return;}
-  document.getElementById('empty').style.display='none';
-  const spM={NEW:'st-new',OPEN:'st-open',CLOSING:'st-closing',SOON:'st-soon',LIVE:'st-live'};
-  const iM={CIBC:'i-cibc',NBC:'i-nbc',BNS:'i-bns',RBC:'i-rbc',BMO:'i-bmo',TD:'i-td'};
-  const spL={NEW:'New',OPEN:'Open',CLOSING:'Closing',SOON:'Coming Soon',LIVE:'Live'};
-  data.forEach(n=>{
-    const tr=document.createElement('tr');
-    let bd=n.pp?'<span class="pill b-pp">100% PP</span>':n.barrier===0?'<span style="color:#bbb">&#8212;</span>':'<span class="pill '+bc(n.barrier)+'">'+n.barrier+'%</span>';
-    tr.innerHTML='<td><span class="pill '+(spM[n.status]||'st-open')+'">'+(spL[n.status]||n.status)+'</span></td><td><span class="pill '+(iM[n.issuer]||'')+'">'+(n.issuer)+'</span></td><td><div class="nm">'+n.name+'</div></td><td><span class="pill pill-s">'+n.structure+'</span></td><td><span class="pill '+(n.cls==='F'?'f':'a')+'">'+n.cls+'</span></td><td style="font-weight:600;white-space:nowrap;font-size:11px">'+n.cd+'</td><td>'+bd+'</td><td style="white-space:nowrap;font-size:11px">'+(n.term?n.term+' yr':'&#8212;')+'</td><td><span class="pill '+(ucC[n.ucat]||'pill-s')+'">'+ucL[n.ucat]+'</span></td><td style="font-size:11px">'+n.currency+'</td><td style="white-space:nowrap;font-size:11px">'+(n.commission===0?'<span style="color:#bbb">0%</span>':n.commission+'%')+'</td><td style="white-space:nowrap;font-size:11px;color:#999">'+n.closing+'</td>';
-    tbody.appendChild(tr);
-  });
-}
-function sb(col){if(sc===col)sd*=-1;else{sc=col;sd=1;}document.querySelectorAll('th').forEach(t=>t.classList.remove('sorted'));const th=document.getElementById('th-'+col);if(th){th.classList.add('sorted');th.querySelector('.sa').textContent=sd===1?'\u2191':'\u2193';}render();}
-function reset(){['fi','fc','ft','fuc','fb','fcu','fs','ftr'].forEach(id=>document.getElementById(id).value='');document.getElementById('fcp').value='';render();}
-['fi','fc','ft','fuc','fb','fcu','fs','ftr'].forEach(id=>document.getElementById(id).addEventListener('change',render));
-document.getElementById('fcp').addEventListener('input',render);
-render();
+ 
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let selIds   = new Set();
+let themes   = new Set();
+let sector   = '';
+let sortKey  = null;
+let sortDir  = 1;
+let filtered = [];
+ 
+document.addEventListener('click', e => {
+  if (!e.target.closest('#msw')) document.getElementById('ms-dd').classList.remove('open');
+});
+ 
+window.S = {
+  toggleDD() { document.getElementById('ms-dd').classList.toggle('open'); },
+ 
+  themeAll(cb) {
+    document.querySelectorAll('.tcb').forEach(c => c.checked = false);
+    themes.clear();
+    this._updateThemeLabel();
+    this.run();
+  },
+ 
+  themeChange() {
+    const checked = [...document.querySelectorAll('.tcb:checked')].map(c => c.value);
+    themes = new Set(checked);
+    document.getElementById('t-all').checked = themes.size === 0;
+    this._updateThemeLabel();
+    const showSub = themes.size === 0 || themes.has('Sector');
+    document.getElementById('sub-bar').classList.toggle('open', showSub);
+    this.run();
+  },
+ 
+  _updateThemeLabel() {
+    const el = document.getElementById('ms-lbl');
+    if (themes.size === 0) el.textContent = 'All themes';
+    else if (themes.size === 1) el.textContent = [...themes][0];
+    else el.textContent = themes.size + ' themes';
+  },
+ 
+  sec(s, el) {
+    sector = s;
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+    el.classList.add('on');
+    this.run();
+  },
+ 
+  run() {
+    const issuer = document.getElementById('f-iss').value;
+    const struct = document.getElementById('f-st').value;
+    const minBa  = parseInt(document.getElementById('f-ba').value) || 0;
+    const cls    = document.getElementById('f-cl').value;
+    const ccy    = document.getElementById('f-cy').value;
+    const status = document.getElementById('f-sx').value;
+    const q      = document.getElementById('f-q').value.trim().toLowerCase();
+ 
+    filtered = NOTES.filter(n => {
+      if (themes.size > 0 && !themes.has(n.theme)) return false;
+      if (sector !== '' && n.sector !== sector) return false;
+      if (issuer !== '' && n.issuer !== issuer) return false;
+      if (struct !== '' && n.struct !== struct) return false;
+      if (minBa  >  0   && n.barrier < minBa)  return false;
+      if (cls    !== '' && n.cls !== cls)       return false;
+      if (ccy    !== '' && n.ccy !== ccy)       return false;
+      if (status !== '' && n.status !== status) return false;
+      if (q !== '') {
+        const hay = (n.name + n.underlying + n.issuer + n.theme + n.sector + n.fs).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+ 
+    if (sortKey) {
+      filtered.sort((a, b) => {
+        const av = a[sortKey], bv = b[sortKey];
+        return typeof av === 'string' ? av.localeCompare(bv) * sortDir : (av - bv) * sortDir;
+      });
+    }
+    this._draw();
+    this._stats();
+  },
+ 
+  sort(k) {
+    if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+    this.run();
+  },
+ 
+  _bcls(b) {
+    if (b <= 20) return 'bc20';
+    if (b <= 25) return 'bc25';
+    if (b <= 30) return 'bc30';
+    if (b <= 35) return 'bc35';
+    return 'bc40p';
+  },
+ 
+  _draw() {
+    const tb = document.getElementById('tbody');
+    const em = document.getElementById('empty');
+    if (!filtered.length) { tb.innerHTML = ''; em.style.display = 'block'; return; }
+    em.style.display = 'none';
+ 
+    tb.innerHTML = filtered.map(n => {
+      const id  = NOTES.indexOf(n);
+      const chk = selIds.has(id) ? 'checked' : '';
+      const bt  = n.barrier > 0 ? `-${n.barrier}%` : 'N/A';
+      const btc = n.barrier > 0 ? this._bcls(n.barrier) : '';
+      const cpH = n.coupon > 0
+        ? `<span class="cp">${n.coupon.toFixed(2)}%</span><br><span style="font-size:10px;color:#888">${n.couponNote}</span>`
+        : `<span style="font-size:10.5px;color:#888">${n.couponNote}</span>`;
+      const stBdg = n.struct === 'Contingent Coupon'
+        ? '<span class="bdg bf">Cont. Coupon</span>'
+        : n.struct === 'Autocallable'
+          ? '<span class="bdg bfl">Autocallable</span>'
+          : '<span class="bdg bppn">PPN / GIC</span>';
+      const sxBdg = n.status === 'Active'
+        ? '<span class="bdg bnew">Active</span>'
+        : n.status === 'Coming Soon'
+          ? '<span class="bdg bcs">Coming Soon</span>'
+          : '<span class="bdg bcl">Closed</span>';
+      const thLabel = n.theme + (n.sector ? ' › ' + n.sector : '');
+      const fsH = n.fs ? `<span style="font-size:10px;color:#888">${n.fs}</span>` : '<span style="font-size:10px;color:#aaa">TBD</span>';
+ 
+      return `<tr>
+        <td><input type="checkbox" ${chk} onchange="S.togSel(${id},this)"></td>
+        <td><span class="ibd">${n.issuer}</span></td>
+        <td style="max-width:190px;font-size:11.5px">${n.name}</td>
+        <td style="max-width:165px;font-size:10.5px;color:#888">${n.underlying}</td>
+        <td style="font-size:10.5px;white-space:nowrap">${thLabel}</td>
+        <td>${stBdg}</td>
+        <td>${cpH}</td>
+        <td class="${btc}" style="font-weight:500;white-space:nowrap">${bt}</td>
+        <td style="font-size:11px;white-space:nowrap">${n.term}</td>
+        <td><span class="bdg ${n.cls === 'F' ? 'bf' : 'ba'}">${n.cls}</span></td>
+        <td style="font-size:11px">${n.ccy}</td>
+        <td>${sxBdg}</td>
+        <td>${fsH}</td>
+      </tr>`;
+    }).join('');
+  },
+ 
+  _stats() {
+    document.getElementById('st-count').textContent = filtered.length;
+    const wc = filtered.filter(n => n.coupon > 0);
+    if (wc.length) {
+      document.getElementById('st-avg').textContent = (wc.reduce((s, n) => s + n.coupon, 0) / wc.length).toFixed(2) + '%';
+      document.getElementById('st-max').textContent = Math.max(...wc.map(n => n.coupon)).toFixed(2) + '%';
+    } else {
+      document.getElementById('st-avg').textContent = '—';
+      document.getElementById('st-max').textContent = '—';
+    }
+  },
+ 
+  togSel(id, cb) { if (cb.checked) selIds.add(id); else selIds.delete(id); this._selBar(); },
+ 
+  togAll(cb) {
+    filtered.forEach(n => {
+      const id = NOTES.indexOf(n);
+      if (cb.checked) selIds.add(id); else selIds.delete(id);
+    });
+    this.run();
+    this._selBar();
+  },
+ 
+  clearSel() { selIds.clear(); this.run(); this._selBar(); },
+ 
+  _selBar() {
+    const show = selIds.size > 0;
+    document.getElementById('sel-bar').classList.toggle('show', show);
+    document.getElementById('sel-lbl').textContent = selIds.size + ' note' + (selIds.size !== 1 ? 's' : '') + ' selected';
+    document.getElementById('st-selc').textContent = selIds.size;
+    document.getElementById('st-sel').style.display = show ? 'block' : 'none';
+  },
+ 
+  tab(t) {
+    ['screen', 'best', 'pitch'].forEach(x => {
+      document.getElementById('tab-' + x).style.display = x === t ? 'block' : 'none';
+    });
+    document.querySelectorAll('.tab').forEach((el, i) => {
+      el.classList.toggle('active', ['screen', 'best', 'pitch'][i] === t);
+    });
+  },
+ 
+  renderBest() {
+    const th   = document.getElementById('b-th').value;
+    const cl   = document.getElementById('b-cl').value;
+    const st   = document.getElementById('b-st').value;
+    const stat = document.getElementById('b-sx').value;
+ 
+    const pool = NOTES.filter(n => {
+      if (th   && n.theme  !== th)   return false;
+      if (cl   && n.cls    !== cl)   return false;
+      if (st   && n.struct !== st)   return false;
+      if (stat === 'Active' && n.status !== 'Active') return false;
+      if (n.coupon === 0)  return false;
+      if (n.struct === 'PPN / GIC') return false;
+      return true;
+    });
+ 
+    const themeList = th ? [th] : [...new Set(pool.map(n => n.theme))].sort();
+    const tiers = [
+      { label: '≥ 20% barrier', min: 20 },
+      { label: '≥ 25% barrier', min: 25 },
+      { label: '≥ 30% barrier', min: 30 }
+    ];
+ 
+    const html = themeList.map(t => {
+      const rows = tiers.map(tier => {
+        const cands = pool.filter(n => n.theme === t && n.barrier >= tier.min);
+        if (!cands.length) return `<div class="best-row"><span style="font-size:11px;color:#888">${tier.label}</span><span style="font-size:11px;color:#888">—</span></div>`;
+        const best = cands.reduce((a, b) => b.coupon > a.coupon ? b : a);
+        return `<div class="best-row">
+          <span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span>
+          <div style="text-align:right">
+            <span class="best-cp">${best.coupon.toFixed(2)}%</span>
+            <span class="ibd" style="margin-left:3px">${best.issuer}</span>
+            <span class="bdg ${best.cls === 'F' ? 'bf' : 'ba'}" style="margin-left:2px">${best.cls}</span><br>
+            <span style="font-size:10px;color:#888">${best.name.length > 42 ? best.name.substring(0, 42) + '…' : best.name}</span><br>
+            <span style="font-size:10px;color:#aaa">${best.fs || 'TBD'} · ${best.term}</span>
+          </div>
+        </div>`;
+      }).join('');
+      return `<div class="best-card"><h4>${t}</h4><div class="best-sub">${cl ? cl + '-Class · ' : 'Both classes · '}${st || 'All structures'}</div>${rows}</div>`;
+    }).join('');
+ 
+    document.getElementById('best-out').innerHTML = html || '<p style="font-size:12px;color:#888">No notes match.</p>';
+  },
+ 
+  genPitch() {
+    this.tab('pitch');
+    const notes = [...selIds].map(id => NOTES[id]);
+    const psel  = document.getElementById('p-sel');
+    const pout  = document.getElementById('p-out');
+    if (!notes.length) {
+      psel.textContent = 'No notes selected — go to the Screener tab and check the notes you want to include.';
+      pout.style.display = 'none';
+      return;
+    }
+    psel.textContent = notes.length + ' note' + (notes.length !== 1 ? 's' : '') + ' selected';
+    const full = { CIBC:'CIBC', NBC:'National Bank', BNS:'Scotiabank', RBC:'RBC Capital Markets', BMO:'BMO Capital Markets', TD:'TD Securities' };
+    const text = notes.map(n => {
+      const iss   = full[n.issuer] || n.issuer;
+      const sdesc = n.struct === 'PPN / GIC' ? 'a principal protected note' : n.struct === 'Autocallable' ? 'a front-loaded autocallable note' : 'a contingent coupon note';
+      const bdesc = n.barrier > 0 ? `a ${n.barrier}% downside barrier at maturity` : 'full principal protection';
+      const cdesc = n.coupon > 0 ? `paying ${n.coupon.toFixed(2)}% per annum` : 'offering upside participation with principal protection';
+      const exp   = n.theme === 'Sector' && n.sector ? n.sector + ' sector' : n.theme;
+      const add1  = n.coupon > 0 && n.struct !== 'Autocallable' ? ' The coupon is conditional — it is paid as long as the underlying remains above the coupon threshold at each observation date.' : '';
+      const add2  = n.struct === 'Autocallable' ? ' The note can be called early on scheduled observation dates if the index meets the call threshold, locking in the cumulative return at that point.' : '';
+      return `${iss} — ${n.name}${n.fs ? ' (' + n.fs + ')' : ''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term} note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls === 'F' ? 'F-class (fee-based)' : 'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}`;
+    }).join('\n\n' + '─'.repeat(52) + '\n\n');
+ 
+    pout.textContent = text;
+    pout.style.display = 'block';
+  },
+ 
+  copyPitch() {
+    const t = document.getElementById('p-out').textContent;
+    if (t) navigator.clipboard.writeText(t).catch(() => {});
+  }
+};
+ 
+S.run();
+S.renderBest();
 </script>
 </body>
 </html>
