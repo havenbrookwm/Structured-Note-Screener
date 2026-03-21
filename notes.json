@@ -14,7 +14,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22208",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -31,7 +31,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22148",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -48,7 +48,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22149",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -65,7 +65,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22147",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -82,7 +82,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22171",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -99,7 +99,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "CBL22106",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -116,7 +116,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "CBL22145",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -133,7 +133,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22192",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 0% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -150,7 +150,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22160",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -167,7 +167,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22161",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -184,7 +184,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "CBL22138",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -201,7 +201,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "CBL22139",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -218,7 +218,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22168",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -235,7 +235,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22176",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -252,7 +252,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22170",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -269,7 +269,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22177",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -286,7 +286,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22185",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -303,7 +303,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22159",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -320,7 +320,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22157",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -337,7 +337,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22158",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -354,7 +354,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22146",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -371,7 +371,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "CBL22156",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -388,7 +388,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "CBL22200",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -405,7 +405,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22166",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -422,7 +422,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22167",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -439,7 +439,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22150",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -456,7 +456,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22151",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -473,7 +473,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22153",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -490,7 +490,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22184",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -507,7 +507,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22165",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -524,7 +524,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22164",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -541,7 +541,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22199",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -558,7 +558,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22210",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 0% (after 3mo)"
   },
   {
     "issuer": "CIBC",
@@ -575,7 +575,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL22179",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 0% (after 6mo)"
   },
   {
     "issuer": "CIBC",
@@ -592,7 +592,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL31355",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -609,7 +609,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL31359",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "CIBC",
@@ -626,7 +626,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "CBL31360",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 2yr)"
   },
   {
     "issuer": "CIBC",
@@ -745,7 +745,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC35243",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "NBC",
@@ -762,7 +762,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC35245",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "NBC",
@@ -779,7 +779,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC35240",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 2.5% (after 1yr)"
   },
   {
     "issuer": "NBC",
@@ -796,7 +796,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "NBC35248",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "NBC",
@@ -813,7 +813,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC35247",
-    "callThreshold": ""
+    "callThreshold": "Step-down: 0% yr1, -5% yr2-3, -10% yr4-5, -15% yr6, -20% yr7"
   },
   {
     "issuer": "NBC",
@@ -830,7 +830,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "NBC35239",
-    "callThreshold": ""
+    "callThreshold": "Step-down: 0% yr1, -5% yr2, -10% yr3, -15% yr4, -20% yr5"
   },
   {
     "issuer": "NBC",
@@ -847,7 +847,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31721",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -864,7 +864,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31712",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -881,7 +881,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31716",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -898,7 +898,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31733",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -915,7 +915,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31710",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -932,7 +932,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31697",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -949,7 +949,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31705",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -966,7 +966,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "NBC31748",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -983,7 +983,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31723",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1000,7 +1000,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "NBC31678",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1017,7 +1017,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31745",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1034,7 +1034,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31704",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1051,7 +1051,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "NBC31737",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1068,7 +1068,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31722",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1085,7 +1085,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31726",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1102,7 +1102,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31700",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1119,7 +1119,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31725",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1136,7 +1136,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31698",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1153,7 +1153,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31728",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1170,7 +1170,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "NBC31690",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1187,7 +1187,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "NBC31695",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1204,7 +1204,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31703",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1221,7 +1221,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31738",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1238,7 +1238,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "NBC31747",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 12mo)"
   },
   {
     "issuer": "NBC",
@@ -1255,7 +1255,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31711",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1272,7 +1272,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "NBC31662",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1289,7 +1289,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31736",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1306,7 +1306,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31727",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1323,7 +1323,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31735",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1340,7 +1340,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31688",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 5% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1357,7 +1357,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "NBC31732",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 10% (after 6mo)"
   },
   {
     "issuer": "NBC",
@@ -1374,7 +1374,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "NBC32271",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 5% (after 1yr)"
   },
   {
     "issuer": "NBC",
@@ -1425,7 +1425,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "RBC14857",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1442,7 +1442,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "RBC14858",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1459,7 +1459,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "RBC14840",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1476,7 +1476,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "RBC14841",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1493,7 +1493,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14878",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1510,7 +1510,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14879",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1527,7 +1527,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14930",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1544,7 +1544,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14931",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1561,7 +1561,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15037",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1578,7 +1578,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15036",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1595,7 +1595,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15035",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1612,7 +1612,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15034",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 24mo)"
   },
   {
     "issuer": "RBC",
@@ -1629,7 +1629,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14928",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1646,7 +1646,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14929",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1663,7 +1663,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14913",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "RBC",
@@ -1680,7 +1680,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14914",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "RBC",
@@ -1697,7 +1697,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14911",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1714,7 +1714,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14912",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1731,7 +1731,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14882",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1748,7 +1748,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14883",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1765,7 +1765,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "RBC14960",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1782,7 +1782,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "RBC14961",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1799,7 +1799,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14932",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1816,7 +1816,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14933",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1833,7 +1833,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15007",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1850,7 +1850,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15006",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1867,7 +1867,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "RBC14829",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "RBC",
@@ -1884,7 +1884,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "RBC14830",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "RBC",
@@ -1901,7 +1901,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14880",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1918,7 +1918,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14881",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 100% (after 12mo)"
   },
   {
     "issuer": "RBC",
@@ -1969,7 +1969,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14962",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100%"
   },
   {
     "issuer": "RBC",
@@ -1986,7 +1986,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14963",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100%"
   },
   {
     "issuer": "RBC",
@@ -2003,7 +2003,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14964",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100%"
   },
   {
     "issuer": "RBC",
@@ -2020,7 +2020,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14965",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100%"
   },
   {
     "issuer": "RBC",
@@ -2037,7 +2037,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14909",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "RBC",
@@ -2054,7 +2054,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "RBC14910",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "RBC",
@@ -2207,7 +2207,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15038",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "RBC",
@@ -2224,7 +2224,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "RBC15039",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "BNS",
@@ -2241,7 +2241,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7504",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2258,7 +2258,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7564",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2275,7 +2275,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7505",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2292,7 +2292,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7561",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2309,7 +2309,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7513",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2326,7 +2326,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7543",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2343,7 +2343,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7544",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2360,7 +2360,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7456",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2377,7 +2377,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2394,7 +2394,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2411,7 +2411,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7466",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2428,7 +2428,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7467",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2445,7 +2445,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7477",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2462,7 +2462,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2479,7 +2479,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2496,7 +2496,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7492",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2513,7 +2513,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7491",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2530,7 +2530,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7484",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2547,7 +2547,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2564,7 +2564,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7526",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2581,7 +2581,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7527",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2598,7 +2598,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2615,7 +2615,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2632,7 +2632,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2649,7 +2649,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7520",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2666,7 +2666,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2683,7 +2683,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "100%"
   },
   {
     "issuer": "BNS",
@@ -2700,7 +2700,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7532",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2717,7 +2717,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 110% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2734,7 +2734,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7542",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2751,7 +2751,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2768,7 +2768,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2785,7 +2785,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7525",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2802,7 +2802,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7507",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2819,7 +2819,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7478",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 110% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2836,7 +2836,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7465",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 110% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2853,7 +2853,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7516",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2870,7 +2870,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7540",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2887,7 +2887,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7559",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2904,7 +2904,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2921,7 +2921,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7546",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2938,7 +2938,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7545",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -2955,7 +2955,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2972,7 +2972,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -2989,7 +2989,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7474",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3006,7 +3006,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7458",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 2yr)"
   },
   {
     "issuer": "BNS",
@@ -3023,7 +3023,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7529",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3040,7 +3040,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7485",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3057,7 +3057,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7528",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3074,7 +3074,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7534",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3091,7 +3091,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3108,7 +3108,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 2yr)"
   },
   {
     "issuer": "BNS",
@@ -3125,7 +3125,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7489",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3142,7 +3142,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3159,7 +3159,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7519",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3176,7 +3176,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7493",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3193,7 +3193,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "SSP7494",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3210,7 +3210,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3227,7 +3227,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BNS",
@@ -3346,7 +3346,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7537",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3363,7 +3363,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "SSP7510",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BNS",
@@ -3397,7 +3397,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21455",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3414,7 +3414,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21456",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3431,7 +3431,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21453",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3448,7 +3448,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21454",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3465,7 +3465,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21477",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3482,7 +3482,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21478",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3499,7 +3499,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21476",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "BMO",
@@ -3516,7 +3516,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21479",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 0%"
   },
   {
     "issuer": "BMO",
@@ -3533,7 +3533,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21429",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "BMO",
@@ -3550,7 +3550,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21418",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "BMO",
@@ -3567,7 +3567,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21484",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3584,7 +3584,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21481",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3601,7 +3601,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21450",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3618,7 +3618,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21452",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3635,7 +3635,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21420",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3652,7 +3652,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21421",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3669,7 +3669,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21422",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3686,7 +3686,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21427",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3703,7 +3703,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21482",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3720,7 +3720,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21483",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3737,7 +3737,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21451",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3754,7 +3754,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "JHN21401",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3771,7 +3771,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21480",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3788,7 +3788,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "JHN21398",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3805,7 +3805,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21448",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3822,7 +3822,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "JHN21399",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3839,7 +3839,7 @@
     "ccy": "USD",
     "status": "Closed",
     "fs": "JHN21402",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 4th obs)"
   },
   {
     "issuer": "BMO",
@@ -3856,7 +3856,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21458",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 110% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3873,7 +3873,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21459",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 110% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3890,7 +3890,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21457",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3907,7 +3907,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "JHN21460",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3924,7 +3924,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "JHN21461",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3941,7 +3941,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21424",
-    "callThreshold": ""
+    "callThreshold": "Callable quarterly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -3958,7 +3958,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN21425",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "BMO",
@@ -4111,7 +4111,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN3964",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BMO",
@@ -4128,7 +4128,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN3965",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BMO",
@@ -4145,7 +4145,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "JHN3977",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BMO",
@@ -4162,7 +4162,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "JHN3963",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105% (after 1yr)"
   },
   {
     "issuer": "BMO",
@@ -4196,7 +4196,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6902",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 102.5% (after 13mo)"
   },
   {
     "issuer": "TD",
@@ -4213,7 +4213,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6903",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "TD",
@@ -4230,7 +4230,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6901",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 100%"
   },
   {
     "issuer": "TD",
@@ -4247,7 +4247,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6882",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4264,7 +4264,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6883",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4281,7 +4281,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6878",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4298,7 +4298,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6884",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4315,7 +4315,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6879",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4332,7 +4332,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "TDN6900",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4349,7 +4349,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6876",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4366,7 +4366,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "TDN6885",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4383,7 +4383,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "TDN6888",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4400,7 +4400,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6877",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4417,7 +4417,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6886",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 105%"
   },
   {
     "issuer": "TD",
@@ -4434,7 +4434,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6906",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4451,7 +4451,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6905",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4468,7 +4468,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6904",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4485,7 +4485,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6872",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4502,7 +4502,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6891",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4519,7 +4519,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "TDN6893",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4536,7 +4536,7 @@
     "ccy": "CAD",
     "status": "Closed",
     "fs": "TDN6862",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4553,7 +4553,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6892",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4570,7 +4570,7 @@
     "ccy": "USD",
     "status": "Active",
     "fs": "TDN6894",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 12mo)"
   },
   {
     "issuer": "TD",
@@ -4587,7 +4587,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN6907",
-    "callThreshold": ""
+    "callThreshold": "Callable monthly if \u2265 105% (after 6mo)"
   },
   {
     "issuer": "TD",
@@ -4604,7 +4604,7 @@
     "ccy": "CAD",
     "status": "Active",
     "fs": "TDN6887",
-    "callThreshold": ""
+    "callThreshold": "Callable semi-annually if \u2265 105%"
   },
   {
     "issuer": "TD",
@@ -4621,7 +4621,7 @@
     "ccy": "CAD",
     "status": "Coming Soon",
     "fs": "TDN8749",
-    "callThreshold": ""
+    "callThreshold": "Callable annually if \u2265 105%"
   },
   {
     "issuer": "TD",
