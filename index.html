@@ -220,6 +220,9 @@ tr:hover td{background:#f5f5f3}
       <div class="fgrp"><div class="flbl">Status</div>
         <select id="b-sx" onchange="S.renderBest()"><option value="">All</option><option value="Active">Active only</option></select>
       </div>
+      <div class="fgrp"><div class="flbl">CCY</div>
+        <select id="b-cy" onchange="S.renderBest()"><option value="">Both</option><option value="CAD">CAD</option><option value="USD">USD</option></select>
+      </div>
     </div>
     <div class="sel-bar" id="best-sel-bar" style="margin-bottom:.75rem;border-radius:6px">
       <span id="best-sel-lbl" style="font-size:12px;color:#666">0 notes selected</span>
@@ -342,10 +345,12 @@ window.S={
   renderBest(){
     if(!NOTES.length) return;
     const th=document.getElementById('b-th').value,cl=document.getElementById('b-cl').value,
-          st=document.getElementById('b-st').value,stat=document.getElementById('b-sx').value;
+          st=document.getElementById('b-st').value,stat=document.getElementById('b-sx').value,
+          cy=document.getElementById('b-cy').value;
     const pool=NOTES.filter(n=>{
       if(th&&n.theme!==th)return false;if(cl&&n.cls!==cl)return false;
       if(st&&n.struct!==st)return false;if(stat==='Active'&&n.status!=='Active')return false;
+      if(cy&&n.ccy!==cy)return false;
       if(n.coupon===0)return false;if(n.struct==='PPN / GIC')return false;return true;
     });
     const themeList=th?[th]:[...new Set(pool.map(n=>n.theme))].sort();
@@ -355,7 +360,7 @@ window.S={
         const cands=pool.filter(n=>n.theme===t&&n.barrier>=tier.min);
         if(!cands.length)return`<div class="best-none">${tier.label} — No notes</div>`;
         const best=cands.reduce((a,b)=>b.coupon>a.coupon?b:a),id=NOTES.indexOf(best),chk=selIds.has(id)?'checked':'';
-        return`<div class="best-row"><div class="best-chk"><input type="checkbox" data-id="${id}" ${chk} onchange="S.togBestSel(${id},this)"><span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span></div><div class="best-info"><span class="best-cp">${best.coupon.toFixed(2)}%</span><span class="ibd" style="margin-left:3px">${best.issuer}</span><span class="bdg ${best.cls==='F'?'bf':'ba'}" style="margin-left:2px">${best.cls}</span><br><span style="font-size:10px;color:#888">${best.name.length>42?best.name.substring(0,42)+'…':best.name}</span><br><span style="font-size:10px;color:#aaa">${best.fs||'TBD'} · ${best.term} · -${best.barrier}% barrier</span></div></div>`;
+        return`<div class="best-row"><div class="best-chk"><input type="checkbox" data-id="${id}" ${chk} onchange="S.togBestSel(${id},this)"><span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span></div><div class="best-info"><span class="best-cp">${best.coupon.toFixed(2)}%</span><span class="ibd" style="margin-left:3px">${best.issuer}</span><span class="bdg ${best.cls==='F'?'bf':'ba'}" style="margin-left:2px">${best.cls}</span><br><span style="font-size:10px;color:#888">${best.name.length>42?best.name.substring(0,42)+'…':best.name}</span><br><span style="font-size:10px;color:#aaa">${best.fs||'TBD'} · ${best.term} · -${best.barrier}% barrier${best.callThreshold?' · Call: '+best.callThreshold:''}</span></div></div>`;
       }).join('');
       return`<div class="best-card"><h4>${t}</h4><div class="best-sub">${cl?cl+'-Class · ':'Both classes · '}${st||'All structures'}</div>${rows}</div>`;
     }).join('');
@@ -368,13 +373,16 @@ window.S={
     psel.textContent=notes.length+' note'+(notes.length!==1?'s':'')+' selected';
     const full={CIBC:'CIBC',NBC:'National Bank',BNS:'Scotiabank',RBC:'RBC Capital Markets',BMO:'BMO Capital Markets',TD:'TD Securities'};
     const text=notes.map(n=>{
-      const iss=full[n.issuer]||n.issuer,sdesc=n.struct==='PPN / GIC'?'a principal protected note':n.struct==='Autocallable'?'a front-loaded autocallable note':'a contingent coupon note',
+      const iss=full[n.issuer]||n.issuer,
+            sdesc=n.struct==='PPN / GIC'?'a principal protected note':n.struct==='Autocallable'?'a front-loaded autocallable note':'a contingent coupon note',
             bdesc=n.barrier>0?`a ${n.barrier}% downside barrier at maturity`:'full principal protection',
             cdesc=n.coupon>0?`paying ${n.coupon.toFixed(2)}% per annum`:'offering upside participation with principal protection',
             exp=n.theme==='Sector'&&n.sector?n.sector+' sector':n.theme,
-            add1=n.coupon>0&&n.struct!=='Autocallable'?' The coupon is conditional — it is paid as long as the underlying remains above the coupon threshold at each observation date.':'',
-            add2=n.struct==='Autocallable'?' The note can be called early on scheduled observation dates if the index meets the call threshold, locking in the cumulative return at that point.':'';
-      return`${iss} — ${n.name}${n.fs?' ('+n.fs+')':''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term} note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls==='F'?'F-class (fee-based)':'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}`;
+            add1=n.coupon>0&&n.struct!=='Autocallable'?' The coupon is conditional — it is paid as long as the underlying remains above the coupon barrier at each observation date.':'',
+            add2=n.struct==='Autocallable'?' The note can be called early on scheduled observation dates if the underlying meets the call threshold, locking in the cumulative return at that point.':'',
+            ct=n.callThreshold?(n.callThreshold.charAt(0).toLowerCase()+n.callThreshold.slice(1)):'',
+            add3=ct&&n.struct==='Contingent Coupon'?' The note is callable — '+ct+'.':ct&&n.struct==='Autocallable'?' Call threshold: '+n.callThreshold+'.':ct?' Call condition: '+n.callThreshold+'.':'';
+      return`${iss} — ${n.name}${n.fs?' ('+n.fs+')':''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term} note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls==='F'?'F-class (fee-based)':'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}${add3}`;
     }).join('\n\n'+'─'.repeat(52)+'\n\n');
     pout.textContent=text;pout.style.display='block';
   },
