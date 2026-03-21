@@ -185,6 +185,7 @@ tr:hover td{background:#f5f5f3}
         <th onclick="S.sort('barrier')">Barrier</th>
         <th>Term</th><th>Cl</th><th>CCY</th>
         <th onclick="S.sort('status')">Status</th>
+        <th>Call Threshold</th>
         <th>FundSERV</th>
       </tr></thead>
       <tbody id="tbody"></tbody>
@@ -303,7 +304,7 @@ window.S={
       const cpH=n.coupon>0?`<span class="cp">${n.coupon.toFixed(2)}%</span><br><span style="font-size:10px;color:#888">${n.couponNote}</span>`:`<span style="font-size:10.5px;color:#888">${n.couponNote}</span>`;
       const stBdg=n.struct==='Contingent Coupon'?'<span class="bdg bf">Cont. Coupon</span>':n.struct==='Autocallable'?'<span class="bdg bfl">Autocallable</span>':'<span class="bdg bppn">PPN / GIC</span>';
       const sxBdg=n.status==='Active'?'<span class="bdg bnew">Active</span>':n.status==='Coming Soon'?'<span class="bdg bcs">Coming Soon</span>':'<span class="bdg bcl">Closed</span>';
-      return`<tr><td><input type="checkbox" ${chk} onchange="S.togSel(${id},this)"></td><td><span class="ibd">${n.issuer}</span></td><td style="max-width:190px;font-size:11.5px">${n.name}</td><td style="max-width:165px;font-size:10.5px;color:#888">${n.underlying}</td><td style="font-size:10.5px;white-space:nowrap">${n.theme+(n.sector?' › '+n.sector:'')}</td><td>${stBdg}</td><td>${cpH}</td><td class="${btc}" style="font-weight:500;white-space:nowrap">${bt}</td><td style="font-size:11px;white-space:nowrap">${n.term}</td><td><span class="bdg ${n.cls==='F'?'bf':'ba'}">${n.cls}</span></td><td style="font-size:11px">${n.ccy}</td><td>${sxBdg}</td><td>${n.fs?`<span style="font-size:10px;color:#888">${n.fs}</span>`:'<span style="font-size:10px;color:#aaa">TBD</span>'}</td></tr>`;
+      return`<tr><td><input type="checkbox" ${chk} onchange="S.togSel(${id},this)"></td><td><span class="ibd">${n.issuer}</span></td><td style="max-width:190px;font-size:11.5px">${n.name}</td><td style="max-width:165px;font-size:10.5px;color:#888">${n.underlying}</td><td style="font-size:10.5px;white-space:nowrap">${n.theme+(n.sector?' › '+n.sector:'')}</td><td>${stBdg}</td><td>${cpH}</td><td class="${btc}" style="font-weight:500;white-space:nowrap">${bt}</td><td style="font-size:11px;white-space:nowrap">${n.term}</td><td><span class="bdg ${n.cls==='F'?'bf':'ba'}">${n.cls}</span></td><td style="font-size:11px">${n.ccy}</td><td>${sxBdg}</td><td style="font-size:11px;white-space:nowrap">${n.callThreshold||'—'}</td><td>${n.fs?`<span style="font-size:10px;color:#888">${n.fs}</span>`:'<span style="font-size:10px;color:#aaa">TBD</span>'}</td></tr>`;
     }).join('');
   },
   _stats(){
