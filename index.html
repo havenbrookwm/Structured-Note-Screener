@@ -257,7 +257,7 @@ let selIds=new Set(),themes=new Set(),sector='',sortKey=null,sortDir=1,filtered=
 fetch('notes.json')
   .then(r => r.json())
   .then(data => {
-    NOTES = data;
+    NOTES = Array.isArray(data) ? data : data.notes;
     document.getElementById('loading').style.display = 'none';
     document.getElementById('main-table').style.display = '';
     S.run();
