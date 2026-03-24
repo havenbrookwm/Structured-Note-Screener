@@ -7034,8 +7034,8 @@
     {
       "name": "U.S. Asset Management Basket Callable Contingent $13.20 Coupon Ser.6 USD F",
       "underlying": "Apollo Global Management, Inc.; Blackstone Inc.; The Carlyle Group Inc.; KKR & Co. Inc.",
-      "theme": "US Large Cap / Broad",
-      "sector": "",
+      "theme": "Sector",
+      "sector": "US Asset Managers",
       "struct": "Contingent Coupon",
       "coupon": 13.2,
       "couponNote": "$13.20 p.a.; coupon barrier -40%",
