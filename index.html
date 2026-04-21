@@ -381,8 +381,7 @@ const cands=pool.filter(n=>n.theme===t&&Math.abs(n.barrier)>=tier.min);
             exp=n.theme==='Sector'&&n.sector?n.sector+' sector':n.theme,
             add1=n.coupon>0&&n.struct!=='Autocallable'?' The coupon is conditional — it is paid as long as the underlying remains above the coupon barrier at each observation date.':'',
             add2=n.struct==='Autocallable'?' The note can be called early on scheduled observation dates if the underlying meets the call threshold, locking in the cumulative return at that point.':'',
-            ct=n.callThreshold?(n.callThreshold.charAt(0).toLowerCase()+n.callThreshold.slice(1)):'',
-            add3=ct&&n.struct==='Contingent Coupon'?' The note is callable — '+ct+'.':ct&&n.struct==='Autocallable'?' Call threshold: '+n.callThreshold+'.':ct?' Call condition: '+n.callThreshold+'.':'';
+const ct=n.callThreshold?String(n.callThreshold):'',            add3=ct&&n.struct==='Contingent Coupon'?' The note is callable — '+ct+'.':ct&&n.struct==='Autocallable'?' Call threshold: '+n.callThreshold+'.':ct?' Call condition: '+n.callThreshold+'.':'';
       return`${iss} — ${n.name}${n.fs?' ('+n.fs+')':''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term} note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls==='F'?'F-class (fee-based)':'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}${add3}`;
     }).join('\n\n'+'─'.repeat(52)+'\n\n');
     pout.textContent=text;pout.style.display='block';
