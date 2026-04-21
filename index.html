@@ -69,7 +69,7 @@ tr:hover td{background:#f5f5f3}
 </style>
 </head>
 <body>
- 
+
 <div class="hdr">
   <div class="logo">Havenbrook <span>Fund Intelligence</span> · Structured Note Screener v2</div>
   <div class="tabs">
@@ -78,7 +78,7 @@ tr:hover td{background:#f5f5f3}
     <button class="tab" onclick="S.tab('pitch')">Pitch Generator</button>
   </div>
 </div>
- 
+
 <div id="tab-screen">
   <div class="filters">
     <div class="fgrp">
@@ -87,15 +87,18 @@ tr:hover td{background:#f5f5f3}
         <div class="ms-btn" id="ms-lbl" onclick="S.toggleDD()">All themes</div>
         <div class="ms-dd" id="ms-dd">
           <div class="ms-item"><input type="checkbox" id="t-all" checked onchange="S.themeAll()"><label for="t-all">All themes</label></div>
-          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Equity (Broad)" onchange="S.themeChange()"><label>Canadian Equity (Broad)</label></div>
           <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Banks" onchange="S.themeChange()"><label>Canadian Banks</label></div>
-          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Energy" onchange="S.themeChange()"><label>Canadian Energy</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Canadian Large Cap" onchange="S.themeChange()"><label>Canadian Large Cap</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Energy" onchange="S.themeChange()"><label>Energy</label></div>
           <div class="ms-item"><input type="checkbox" class="tcb" value="US Banks" onchange="S.themeChange()"><label>US Banks</label></div>
           <div class="ms-item"><input type="checkbox" class="tcb" value="US Large Cap / Broad" onchange="S.themeChange()"><label>US Large Cap / Broad</label></div>
-          <div class="ms-item"><input type="checkbox" class="tcb" value="US Equal Weight / Factor" onchange="S.themeChange()"><label>US Equal Weight / Factor</label></div>
-          <div class="ms-item"><input type="checkbox" class="tcb" value="Global / European / EM" onchange="S.themeChange()"><label>Global / European / EM</label></div>
           <div class="ms-item"><input type="checkbox" class="tcb" value="Sector" onchange="S.themeChange()"><label>Sector</label></div>
-          <div class="ms-item"><input type="checkbox" class="tcb" value="Multi-Asset / Basket PPN" onchange="S.themeChange()"><label>Multi-Asset / Basket PPN</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Single Stock" onchange="S.themeChange()"><label>Single Stock</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="International Equity" onchange="S.themeChange()"><label>International Equity</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Emerging Markets" onchange="S.themeChange()"><label>Emerging Markets</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Multi-Asset" onchange="S.themeChange()"><label>Multi-Asset</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Global Banks" onchange="S.themeChange()"><label>Global Banks</label></div>
+          <div class="ms-item"><input type="checkbox" class="tcb" value="Global Large Cap" onchange="S.themeChange()"><label>Global Large Cap</label></div>
         </div>
       </div>
     </div>
@@ -132,46 +135,42 @@ tr:hover td{background:#f5f5f3}
     <div class="fgrp"><div class="flbl">Status</div>
       <select id="f-sx" onchange="S.run()">
         <option value="">All</option><option value="Active">Active</option>
-        <option value="Coming Soon">Coming Soon</option><option value="Closed">Closed</option>
+        <option value="Coming Soon">Coming Soon</option><option value="Closing Soon">Closing Soon</option>
       </select>
     </div>
     <div class="fgrp"><div class="flbl">Search</div>
       <input type="text" id="f-q" placeholder="keyword…" oninput="S.run()" style="min-width:110px">
     </div>
   </div>
- 
+
   <div class="sub-bar open" id="sub-bar">
     <span class="sub-lbl">Sector:</span>
     <span class="pill on" onclick="S.sec('',this)">All</span>
-    <span class="pill" onclick="S.sec('Telecom',this)">Telecom</span>
+    <span class="pill" onclick="S.sec('Telecommunications',this)">Telecom</span>
     <span class="pill" onclick="S.sec('Utilities',this)">Utilities</span>
     <span class="pill" onclick="S.sec('Healthcare',this)">Healthcare</span>
-    <span class="pill" onclick="S.sec('Semiconductors',this)">Semiconductors</span>
-    <span class="pill" onclick="S.sec('Insurance',this)">Insurance</span>
-    <span class="pill" onclick="S.sec('Pipelines',this)">Pipelines</span>
-    <span class="pill" onclick="S.sec('Gold Miners',this)">Gold Miners</span>
-    <span class="pill" onclick="S.sec('REITs',this)">REITs</span>
-    <span class="pill" onclick="S.sec('Tech/Software',this)">Tech/Software</span>
-    <span class="pill" onclick="S.sec('Power Grid',this)">Power Grid</span>
-    <span class="pill" onclick="S.sec('Cyber Security',this)">Cyber Security</span>
-    <span class="pill" onclick="S.sec('US Energy',this)">US Energy</span>
-    <span class="pill" onclick="S.sec('Critical Minerals',this)">Critical Minerals</span>
-    <span class="pill" onclick="S.sec('US Asset Managers',this)">US Asset Managers</span>
+    <span class="pill" onclick="S.sec('Technology',this)">Technology</span>
+    <span class="pill" onclick="S.sec('Financials',this)">Financials</span>
+    <span class="pill" onclick="S.sec('Materials',this)">Materials</span>
+    <span class="pill" onclick="S.sec('Energy',this)">Energy</span>
+    <span class="pill" onclick="S.sec('Broad Market',this)">Broad Market</span>
+    <span class="pill" onclick="S.sec('Consumer Discretionary',this)">Consumer Disc.</span>
+    <span class="pill" onclick="S.sec('Consumer Staples',this)">Consumer Staples</span>
   </div>
- 
+
   <div class="stats">
     <div class="stat">Showing <b id="st-count">—</b> notes</div>
     <div class="stat">Avg coupon: <b id="st-avg">—</b></div>
     <div class="stat">Max coupon: <b id="st-max">—</b></div>
     <div class="stat" id="st-sel" style="display:none">Selected: <b id="st-selc">0</b></div>
   </div>
- 
+
   <div class="sel-bar" id="sel-bar">
     <span id="sel-lbl" style="font-size:12px;color:#666">0 notes selected</span>
     <button class="btn btn-g" onclick="S.tab('pitch');S.genPitch()">Generate Pitch ↗</button>
     <button class="btn" style="margin-left:4px" onclick="S.clearSel()">Clear</button>
   </div>
- 
+
   <div class="tbl-wrap">
     <div id="loading" class="loading">Loading notes...</div>
     <table id="main-table" style="display:none">
@@ -194,7 +193,7 @@ tr:hover td{background:#f5f5f3}
     <div id="empty" class="empty" style="display:none">No notes match the current filters.</div>
   </div>
 </div>
- 
+
 <div id="tab-best" style="display:none">
   <div class="panel">
     <p style="font-size:12px;color:#888;margin-bottom:.75rem">Best coupon at 20%, 25%, and 30% barrier tiers per theme. Check any note to add it to the Pitch Generator.</p>
@@ -202,10 +201,17 @@ tr:hover td{background:#f5f5f3}
       <div class="fgrp"><div class="flbl">Theme</div>
         <select id="b-th" onchange="S.renderBest()">
           <option value="">All Themes</option>
-          <option>Canadian Equity (Broad)</option><option>Canadian Banks</option>
-          <option>Canadian Energy</option><option>US Banks</option>
-          <option>US Large Cap / Broad</option><option>US Equal Weight / Factor</option>
-          <option>Global / European / EM</option><option>Sector</option><option>Energy</option>
+          <option>Canadian Banks</option>
+          <option>Canadian Large Cap</option>
+          <option>Energy</option>
+          <option>US Banks</option>
+          <option>US Large Cap / Broad</option>
+          <option>Sector</option>
+          <option>Single Stock</option>
+          <option>International Equity</option>
+          <option>Emerging Markets</option>
+          <option>Global Banks</option>
+          <option>Global Large Cap</option>
         </select>
       </div>
       <div class="fgrp"><div class="flbl">Class</div>
@@ -233,7 +239,7 @@ tr:hover td{background:#f5f5f3}
     <div id="best-out" class="best-grid"></div>
   </div>
 </div>
- 
+
 <div id="tab-pitch" style="display:none">
   <div class="panel">
     <p style="font-size:12px;color:#888;margin-bottom:.6rem">Select notes in the Screener or Best Note Finder, then generate a plain-English email-ready narrative.</p>
@@ -246,15 +252,13 @@ tr:hover td{background:#f5f5f3}
     <div id="p-out" class="pitch-out" style="display:none"></div>
   </div>
 </div>
- 
+
 <script>
 (function(){
- 
-// ── All note data loaded from notes.json ──────────────────────────────────
+
 let NOTES = [];
 let selIds=new Set(),themes=new Set(),sector='',sortKey=null,sortDir=1,filtered=[];
- 
-// Fetch notes.json on load
+
 fetch('notes.json')
   .then(r => r.json())
   .then(data => {
@@ -265,11 +269,11 @@ fetch('notes.json')
     S.renderBest();
   })
   .catch(err => {
-    document.getElementById('loading').textContent = 'Error loading notes.json — make sure the file is in the same folder as index.html.';
+    document.getElementById('loading').textContent = 'Error loading notes.json — ' + err;
   });
- 
+
 document.addEventListener('click',e=>{if(!e.target.closest('#msw'))document.getElementById('ms-dd').classList.remove('open');});
- 
+
 window.S={
   toggleDD(){document.getElementById('ms-dd').classList.toggle('open');},
   themeAll(){document.querySelectorAll('.tcb').forEach(c=>c.checked=false);themes.clear();this._updateThemeLabel();document.getElementById('sub-bar').classList.add('open');this.run();},
@@ -278,9 +282,12 @@ window.S={
   sec(s,el){sector=s;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');this.run();},
   run(){
     if(!NOTES.length) return;
-    const issuer=document.getElementById('f-iss').value,struct=document.getElementById('f-st').value,
-          minBa=parseInt(document.getElementById('f-ba').value)||0,cls=document.getElementById('f-cl').value,
-          ccy=document.getElementById('f-cy').value,status=document.getElementById('f-sx').value,
+    const issuer=document.getElementById('f-iss').value,
+          struct=document.getElementById('f-st').value,
+          minBa=parseInt(document.getElementById('f-ba').value)||0,
+          cls=document.getElementById('f-cl').value,
+          ccy=document.getElementById('f-cy').value,
+          status=document.getElementById('f-sx').value,
           q=document.getElementById('f-q').value.trim().toLowerCase();
     filtered=NOTES.filter(n=>{
       if(themes.size>0&&!themes.has(n.theme))return false;
@@ -304,10 +311,13 @@ window.S={
     if(!filtered.length){tb.innerHTML='';em.style.display='block';return;}
     em.style.display='none';
     tb.innerHTML=filtered.map(n=>{
-      const id=NOTES.indexOf(n),chk=selIds.has(id)?'checked':'',bt=n.barrier!==0?`${n.barrier}%`:'N/A',btc=n.barrier!==0?this._bcls(Math.abs(n.barrier)):'';
+      const id=NOTES.indexOf(n),
+            chk=selIds.has(id)?'checked':'',
+            bt=n.barrier!==0?`${n.barrier}%`:'N/A',
+            btc=n.barrier!==0?this._bcls(Math.abs(n.barrier)):'';
       const cpH=n.coupon>0?`<span class="cp">${n.coupon.toFixed(2)}%</span><br><span style="font-size:10px;color:#888">${n.couponNote}</span>`:`<span style="font-size:10.5px;color:#888">${n.couponNote}</span>`;
       const stBdg=n.struct==='Contingent Coupon'?'<span class="bdg bf">Cont. Coupon</span>':n.struct==='Autocallable'?'<span class="bdg bfl">Autocallable</span>':'<span class="bdg bppn">PPN / GIC</span>';
-      const sxBdg=n.status==='Active'?'<span class="bdg bnew">Active</span>':n.status==='Coming Soon'?'<span class="bdg bcs">Coming Soon</span>':'<span class="bdg bcl">Closed</span>';
+      const sxBdg=n.status==='Active'?'<span class="bdg bnew">Active</span>':n.status==='Coming Soon'?'<span class="bdg bcs">Coming Soon</span>':n.status==='Closing Soon'?'<span class="bdg bcs">Closing Soon</span>':'<span class="bdg bcl">Closed</span>';
       return`<tr><td><input type="checkbox" ${chk} onchange="S.togSel(${id},this)"></td><td><span class="ibd">${n.issuer}</span></td><td style="max-width:190px;font-size:11.5px">${n.name}</td><td style="max-width:165px;font-size:10.5px;color:#888">${n.underlying}</td><td style="font-size:10.5px;white-space:nowrap">${n.theme+(n.sector?' › '+n.sector:'')}</td><td>${stBdg}</td><td>${cpH}</td><td class="${btc}" style="font-weight:500;white-space:nowrap">${bt}</td><td style="font-size:11px;white-space:nowrap">${n.term}</td><td><span class="bdg ${n.cls==='F'?'bf':'ba'}">${n.cls}</span></td><td style="font-size:11px">${n.ccy}</td><td>${sxBdg}</td><td style="font-size:11px;white-space:nowrap">${n.callThreshold||'—'}</td><td>${n.fs?`<span style="font-size:10px;color:#888">${n.fs}</span>`:'<span style="font-size:10px;color:#aaa">TBD</span>'}</td></tr>`;
     }).join('');
   },
@@ -345,23 +355,29 @@ window.S={
   },
   renderBest(){
     if(!NOTES.length) return;
-    const th=document.getElementById('b-th').value,cl=document.getElementById('b-cl').value,
-          st=document.getElementById('b-st').value,stat=document.getElementById('b-sx').value,
+    const th=document.getElementById('b-th').value,
+          cl=document.getElementById('b-cl').value,
+          st=document.getElementById('b-st').value,
+          stat=document.getElementById('b-sx').value,
           cy=document.getElementById('b-cy').value;
     const pool=NOTES.filter(n=>{
-      if(th&&n.theme!==th)return false;if(cl&&n.cls!==cl)return false;
-      if(st&&n.struct!==st)return false;if(stat==='Active'&&n.status!=='Active')return false;
+      if(th&&n.theme!==th)return false;
+      if(cl&&n.cls!==cl)return false;
+      if(st&&n.struct!==st)return false;
+      if(stat==='Active'&&n.status!=='Active')return false;
       if(cy&&n.ccy!==cy)return false;
-      if(n.coupon===0)return false;if(n.struct==='PPN / GIC')return false;return true;
+      if(n.coupon===0)return false;
+      if(n.struct==='PPN / GIC')return false;
+      return true;
     });
     const themeList=th?[th]:[...new Set(pool.map(n=>n.theme))].sort();
     const tiers=[{label:'≥ 20% barrier',min:20},{label:'≥ 25% barrier',min:25},{label:'≥ 30% barrier',min:30}];
     const html=themeList.map(t=>{
       const rows=tiers.map(tier=>{
-const cands=pool.filter(n=>n.theme===t&&Math.abs(n.barrier)>=tier.min);
+        const cands=pool.filter(n=>n.theme===t&&Math.abs(n.barrier)>=tier.min);
         if(!cands.length)return`<div class="best-none">${tier.label} — No notes</div>`;
         const best=cands.reduce((a,b)=>b.coupon>a.coupon?b:a),id=NOTES.indexOf(best),chk=selIds.has(id)?'checked':'';
-        return`<div class="best-row"><div class="best-chk"><input type="checkbox" data-id="${id}" ${chk} onchange="S.togBestSel(${id},this)"><span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span></div><div class="best-info"><span class="best-cp">${best.coupon.toFixed(2)}%</span><span class="ibd" style="margin-left:3px">${best.issuer}</span><span class="bdg ${best.cls==='F'?'bf':'ba'}" style="margin-left:2px">${best.cls}</span><br><span style="font-size:10px;color:#888">${best.name.length>42?best.name.substring(0,42)+'…':best.name}</span><br><span style="font-size:10px;color:#aaa">${best.fs||'TBD'} · ${best.term} · -${best.barrier}% barrier${best.callThreshold?' · Call: '+best.callThreshold:''}</span></div></div>`;
+        return`<div class="best-row"><div class="best-chk"><input type="checkbox" data-id="${id}" ${chk} onchange="S.togBestSel(${id},this)"><span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span></div><div class="best-info"><span class="best-cp">${best.coupon.toFixed(2)}%</span><span class="ibd" style="margin-left:3px">${best.issuer}</span><span class="bdg ${best.cls==='F'?'bf':'ba'}" style="margin-left:2px">${best.cls}</span><br><span style="font-size:10px;color:#888">${best.name.length>42?best.name.substring(0,42)+'…':best.name}</span><br><span style="font-size:10px;color:#aaa">${best.fs||'TBD'} · ${best.term} · ${best.barrier}% barrier${best.callThreshold?' · Call: '+best.callThreshold:''}</span></div></div>`;
       }).join('');
       return`<div class="best-card"><h4>${t}</h4><div class="best-sub">${cl?cl+'-Class · ':'Both classes · '}${st||'All structures'}</div>${rows}</div>`;
     }).join('');
@@ -369,26 +385,29 @@ const cands=pool.filter(n=>n.theme===t&&Math.abs(n.barrier)>=tier.min);
   },
   genPitch(){
     this.tab('pitch');
-    const notes=[...selIds].map(id=>NOTES[id]),psel=document.getElementById('p-sel'),pout=document.getElementById('p-out');
+    const notes=[...selIds].map(id=>NOTES[id]),
+          psel=document.getElementById('p-sel'),
+          pout=document.getElementById('p-out');
     if(!notes.length){psel.textContent='No notes selected — select notes in the Screener or Best Note Finder first.';pout.style.display='none';return;}
     psel.textContent=notes.length+' note'+(notes.length!==1?'s':'')+' selected';
     const full={CIBC:'CIBC',NBC:'National Bank',BNS:'Scotiabank',RBC:'RBC Capital Markets',BMO:'BMO Capital Markets',TD:'TD Securities'};
     const text=notes.map(n=>{
       const iss=full[n.issuer]||n.issuer,
             sdesc=n.struct==='PPN / GIC'?'a principal protected note':n.struct==='Autocallable'?'a front-loaded autocallable note':'a contingent coupon note',
-            bdesc=n.barrier>0?`a ${n.barrier}% downside barrier at maturity`:'full principal protection',
+            bdesc=n.barrier!==0?`a ${Math.abs(n.barrier)}% downside barrier at maturity`:'full principal protection',
             cdesc=n.coupon>0?`paying ${n.coupon.toFixed(2)}% per annum`:'offering upside participation with principal protection',
             exp=n.theme==='Sector'&&n.sector?n.sector+' sector':n.theme,
             add1=n.coupon>0&&n.struct!=='Autocallable'?' The coupon is conditional — it is paid as long as the underlying remains above the coupon barrier at each observation date.':'',
             add2=n.struct==='Autocallable'?' The note can be called early on scheduled observation dates if the underlying meets the call threshold, locking in the cumulative return at that point.':'',
-ct=n.callThreshold?String(n.callThreshold):'',             add3=ct&&n.struct==='Contingent Coupon'?' The note is callable — '+ct+'.':ct&&n.struct==='Autocallable'?' Call threshold: '+n.callThreshold+'.':ct?' Call condition: '+n.callThreshold+'.':'';
-      return`${iss} — ${n.name}${n.fs?' ('+n.fs+')':''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term} note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls==='F'?'F-class (fee-based)':'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}${add3}`;
+            ct=n.callThreshold?String(n.callThreshold):'',
+            add3=ct&&n.struct==='Contingent Coupon'?' The note is callable — call threshold '+ct+'.':ct&&n.struct==='Autocallable'?' Call threshold: '+ct+'.':'';
+      return`${iss} — ${n.name}${n.fs?' ('+n.fs+')':''}\n\nThis is ${sdesc} issued by ${iss}, ${cdesc} with ${bdesc}. The ${n.term}-year note provides exposure to the ${exp} via the ${n.underlying}. Available in ${n.cls==='F'?'F-class (fee-based)':'A-class (commission-based)'}, denominated in ${n.ccy}.${add1}${add2}${add3}`;
     }).join('\n\n'+'─'.repeat(52)+'\n\n');
     pout.textContent=text;pout.style.display='block';
   },
   copyPitch(){const t=document.getElementById('p-out').textContent;if(t)navigator.clipboard.writeText(t).catch(()=>{});}
 };
- 
+
 })();
 </script>
 </body>
