@@ -308,7 +308,7 @@
   {
     "name": "RBC Solactive Global Energy Select AR 4.75% Callable Contingent Yield (CAD), Series 3735",
     "underlying": "Solactive Global Energy Select AR 4.75% Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 10.62,
@@ -325,7 +325,7 @@
   {
     "name": "RBC Solactive Global Energy Select AR 4.75% Callable Contingent Yield (CAD), Series 3736, F-Class",
     "underlying": "Solactive Global Energy Select AR 4.75% Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 12.72,
@@ -342,7 +342,7 @@
   {
     "name": "RBC Solactive US Energy Select 10 CAD Hedged 87 AR Callable Contingent Yield 9.42% (CAD), Series 3718",
     "underlying": "Solactive US Energy Select 10 AR 87 Hedged to CAD Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 9.42,
@@ -359,7 +359,7 @@
   {
     "name": "RBC Solactive US Energy Select 10 CAD Hedged 87 AR Callable Contingent Yield 11.85% (CAD), Series 3719, F-Class",
     "underlying": "Solactive US Energy Select 10 AR 87 Hedged to CAD Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.85,
@@ -376,7 +376,7 @@
   {
     "name": "RBC Solactive US Energy Select 10 CAD Hedged 87 AR Callable Contingent Yield 12.27% (CAD), Series 3720",
     "underlying": "Solactive US Energy Select 10 AR 87 Hedged to CAD Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 12.27,
@@ -393,7 +393,7 @@
   {
     "name": "RBC Solactive US Energy Select 10 CAD Hedged 87 AR Callable Contingent Yield 14.31% (CAD), Series 3721, F-Class",
     "underlying": "Solactive US Energy Select 10 AR 87 Hedged to CAD Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 14.31,
@@ -461,7 +461,7 @@
   {
     "name": "RBC Solactive Canada Energy Select 75 AR Index Autocallable 13.70% (CAD), Series 977",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 13.7,
@@ -478,7 +478,7 @@
   {
     "name": "RBC Solactive Canada Energy Select 75 AR Index Autocallable 15.40% (CAD), Series 978, F-Class",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 15.4,
@@ -495,7 +495,7 @@
   {
     "name": "RBC Solactive Canada Pipelines AR 115 Index Autocallable (CAD), Series 970",
     "underlying": "Solactive Canada Pipelines AR 115 Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 25,
@@ -512,7 +512,7 @@
   {
     "name": "RBC Solactive Canada Pipelines AR 115 Index Autocallable (CAD), Series 971, F-Class",
     "underlying": "Solactive Canada Pipelines AR 115 Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 28,
@@ -1362,7 +1362,7 @@
   {
     "name": "CIBC Canadian Energy Select Index (AR) Autocallable Coupon Notes, Series 288 (F-Class)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 12.24,
@@ -1396,7 +1396,7 @@
   {
     "name": "CIBC Canadian Energy Select Index (AR) Autocallable Coupon Notes, Series 285 (F-Class)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 9.6,
@@ -1430,7 +1430,7 @@
   {
     "name": "CIBC Canadian Energy Select Index (AR) Autocallable Coupon Notes, Series 281 (F-Class)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 12.12,
@@ -1668,7 +1668,7 @@
   {
     "name": "CIBC U.S. Large Cap Energy Select Hedged to CAD Index (AR) Autocallable Coupon Notes, Series 139",
     "underlying": "Solactive United States Large Cap Energy Select Hedged to CAD Index AR",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 10.08,
@@ -1736,7 +1736,7 @@
   {
     "name": "CIBC Canadian Energy Select Index (AR) Autocallable Coupon Notes, Series 287",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 8.88,
@@ -2314,7 +2314,7 @@
   {
     "name": "BMO Solactive Canada Energy Select 75 AR Index Contingent Callable Income (11.73%)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.73,
@@ -2331,7 +2331,7 @@
   {
     "name": "BMO Solactive Canada Energy Select 75 AR Index Contingent Callable Income F-Class (13.11%)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 13.11,
@@ -2348,7 +2348,7 @@
   {
     "name": "BMO Solactive Canada Energy Select 75 AR Index Contingent Callable Income F-Class (11.04%)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.04,
@@ -2824,7 +2824,7 @@
   {
     "name": "BMO Solactive US Energy Equal Weight Select 10 Daily Hedged CAD 56 AR Index Contingent Callable Income",
     "underlying": "Solactive US Energy Equal Weight Select 10 Daily Hedged to CAD 56 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.46,
@@ -2841,7 +2841,7 @@
   {
     "name": "BMO Solactive US Energy Equal Weight Select 10 Daily Hedged CAD 56 AR Index Contingent Callable Income F-Class",
     "underlying": "Solactive US Energy Equal Weight Select 10 Daily Hedged to CAD 56 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 13.89,
@@ -3742,7 +3742,7 @@
   {
     "name": "BNS Canadian Energy (AR) Index Autocallable Notes Series 62 (CAD)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 12,
@@ -3929,7 +3929,7 @@
   {
     "name": "BNS Canadian Energy (AR) Index Autocallable Notes Series 63F (CAD)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Autocallable",
     "coupon": 14.25,
@@ -4133,7 +4133,7 @@
   {
     "name": "BNS Canadian Energy (AR) Index Callable Contingent $8.70 Coupon Notes Series 48 (CAD)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 8.7,
@@ -4252,7 +4252,7 @@
   {
     "name": "BNS Canadian Energy (AR) Index Callable Contingent $11.76 Coupon Notes Series 47F (USD)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.76,
@@ -4337,7 +4337,7 @@
   {
     "name": "BNS Canadian Energy (AR) Index Callable Contingent $11.04 Coupon Notes Series 49F (CAD)",
     "underlying": "Solactive Canada Energy Select 75 AR Index",
-    "theme": "Sector",
+    "theme": "Energy",
     "sector": "Energy",
     "struct": "Contingent Coupon",
     "coupon": 11.04,
