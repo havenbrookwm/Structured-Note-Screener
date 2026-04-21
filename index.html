@@ -304,7 +304,7 @@ window.S={
     if(!filtered.length){tb.innerHTML='';em.style.display='block';return;}
     em.style.display='none';
     tb.innerHTML=filtered.map(n=>{
-      const id=NOTES.indexOf(n),chk=selIds.has(id)?'checked':'',bt=n.barrier>0?`-${n.barrier}%`:'N/A',btc=n.barrier>0?this._bcls(n.barrier):'';
+      const id=NOTES.indexOf(n),chk=selIds.has(id)?'checked':'',bt=n.barrier!==0?`${n.barrier}%`:'N/A',btc=n.barrier!==0?this._bcls(Math.abs(n.barrier)):'';
       const cpH=n.coupon>0?`<span class="cp">${n.coupon.toFixed(2)}%</span><br><span style="font-size:10px;color:#888">${n.couponNote}</span>`:`<span style="font-size:10.5px;color:#888">${n.couponNote}</span>`;
       const stBdg=n.struct==='Contingent Coupon'?'<span class="bdg bf">Cont. Coupon</span>':n.struct==='Autocallable'?'<span class="bdg bfl">Autocallable</span>':'<span class="bdg bppn">PPN / GIC</span>';
       const sxBdg=n.status==='Active'?'<span class="bdg bnew">Active</span>':n.status==='Coming Soon'?'<span class="bdg bcs">Coming Soon</span>':'<span class="bdg bcl">Closed</span>';
