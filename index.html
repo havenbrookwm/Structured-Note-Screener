@@ -358,7 +358,7 @@ window.S={
     const tiers=[{label:'≥ 20% barrier',min:20},{label:'≥ 25% barrier',min:25},{label:'≥ 30% barrier',min:30}];
     const html=themeList.map(t=>{
       const rows=tiers.map(tier=>{
-        const cands=pool.filter(n=>n.theme===t&&n.barrier>=tier.min);
+const cands=pool.filter(n=>n.theme===t&&Math.abs(n.barrier)>=tier.min);
         if(!cands.length)return`<div class="best-none">${tier.label} — No notes</div>`;
         const best=cands.reduce((a,b)=>b.coupon>a.coupon?b:a),id=NOTES.indexOf(best),chk=selIds.has(id)?'checked':'';
         return`<div class="best-row"><div class="best-chk"><input type="checkbox" data-id="${id}" ${chk} onchange="S.togBestSel(${id},this)"><span style="font-size:11px;color:#888;white-space:nowrap">${tier.label}</span></div><div class="best-info"><span class="best-cp">${best.coupon.toFixed(2)}%</span><span class="ibd" style="margin-left:3px">${best.issuer}</span><span class="bdg ${best.cls==='F'?'bf':'ba'}" style="margin-left:2px">${best.cls}</span><br><span style="font-size:10px;color:#888">${best.name.length>42?best.name.substring(0,42)+'…':best.name}</span><br><span style="font-size:10px;color:#aaa">${best.fs||'TBD'} · ${best.term} · -${best.barrier}% barrier${best.callThreshold?' · Call: '+best.callThreshold:''}</span></div></div>`;
